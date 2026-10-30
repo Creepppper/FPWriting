@@ -1,0 +1,52 @@
+\subsection{空中计算与通信聚合融合}\label{subsec:aircomp}
+
+空中计算（over-the-air computation，AirComp）改变了“先传输、后聚合”的数字通信流程。数字正交上传为各终端分配时隙或子载波，接收端分别完成信道解码，再在应用层求和；其可靠性边界清晰，但接入资源和聚合等待通常随参与设备增多。AirComp则使终端在同一资源块同步发送模拟映射后的更新，利用多址信道的波形叠加直接获得加权和，从而把传输与聚合合并\cite{Amiri2019OTA,Zhu2020BroadbandAnalog,ZhuLi2020IntegratedAirComp}。两种机制的差异如图~\ref{fig:digital-aircomp}所示。
+
+\begin{figure*}[t]
+  \centering
+  \resizebox{0.94\textwidth}{!}{\input{figures/tikz/aircomp_mechanism}}
+  \caption{数字正交上传与空中聚合的机理差异（作者根据文献~\protect\cite{Amiri2019OTA,Zhu2020BroadbandAnalog,ZhuLi2020IntegratedAirComp}归纳绘制；原创图，未直接复用或改编第三方图片）}
+  \label{fig:digital-aircomp}
+\end{figure*}
+
+AirComp的建模目的，是同时表示目标聚合值、信道失真与接收噪声。对某一模型坐标，设第 \(t\) 轮参与集合为 \(\mathcal S_t\)，终端 \(k\) 发送归一化更新 \(x_{k,t}\)，其目标权重为 \(q_{k,t}\)，则接收与估计关系可写为
+\begin{subequations}\label{eq:aircomp}
+  \begin{align}
+    y_t &= \sum_{k\in\mathcal S_t}h_{k,t}\beta_{k,t}x_{k,t}+n_t,\label{eq:aircomp-receive}\\
+    \widehat{s}_t &= a_t y_t,\qquad
+    s_t=\sum_{k\in\mathcal S_t}q_{k,t}x_{k,t},\label{eq:aircomp-target}\\
+    e_t &= \widehat{s}_t-s_t
+    =\sum_{k\in\mathcal S_t}
+      \bigl(a_t h_{k,t}\beta_{k,t}-q_{k,t}\bigr)x_{k,t}+a_t n_t.\label{eq:aircomp-error}
+  \end{align}
+\end{subequations}
+式中，\(h_{k,t}\) 为上行信道系数，\(\beta_{k,t}\) 为终端预编码系数，\(n_t\) 为接收噪声，\(a_t\) 为接收端缩放系数，\(e_t\) 为聚合误差。式~\eqref{eq:aircomp-error}表明，低时延叠加并非“零代价聚合”：信道估计误差、载波与符号不同步、受限功率下的不完全信道反演以及噪声都会造成失真。
+
+因此，AirComp的收益取决于物理层条件及学习任务对聚合误差的容忍度。宽带与时变信道研究通过功率控制、设备选择和接收缩放抑制均方误差；稀疏一比特量化和分层AirComp则把载荷压缩或网络组织与模拟聚合结合，但同时叠加量化、信道和层级误差\cite{Tegin2023TimeVaryingOTA,Oh2024SparseOneBitOTA,Azimi2024HierarchicalOTA}。该机制适合大量终端同时接入、聚合函数可加且基站能够实施精确信道协同的无线边缘场景；在深衰落、严格可靠传输或同步条件不足时，数字正交方案仍更稳健。
+
+\subsection{分层联邦学习与网络拓扑优化}\label{subsec:hierarchical-fl}
+
+分层联邦学习针对终端直接连接中心云所产生的长距离回传和跨域等待，将客户端按小区、地理位置或边缘关联划分为多个簇，由边缘服务器先聚合，再以较低频率向云端上传簇模型\cite{Liu2020HierarchicalFL,Abad2020HierarchicalCellular}。如图~\ref{fig:hierarchical-aggregation}所示，端—边链路承担高频局部交换，边—云链路承担低频全局同步；它优化的是消息路径和聚合位置，而不是消除通信本身。
+
+\begin{figure*}[t]
+  \centering
+  \resizebox{0.58\textwidth}{!}{\input{figures/tikz/hierarchical_aggregation}}
+  \caption{端—边—云双时间尺度聚合（作者根据文献~\protect\cite{Liu2020HierarchicalFL,Abad2020HierarchicalCellular,Liu2023HierarchicalQuantization}归纳绘制；原创图，未直接复用或改编第三方图片）}
+  \label{fig:hierarchical-aggregation}
+\end{figure*}
+
+为表达两级权重和通信频率，设系统含 \(M\) 个边缘簇，第 \(m\) 个簇在第 \(t\) 个云端周期内完成 \(H\) 次边缘聚合，其客户端集合为 \(\mathcal C_{m,t}\)。客户端 \(k\) 的样本数为 \(n_k\)，第 \(r\) 次本地训练后的模型为 \(\bm w_{k,m,t}^{(r)}\)，则
+\begin{subequations}\label{eq:hierarchical-aggregation}
+  \begin{align}
+    N_{m,t} &= \sum_{k\in\mathcal C_{m,t}}n_k,\qquad
+    \bm w_{m,t}^{(r)}
+    =\sum_{k\in\mathcal C_{m,t}}\frac{n_k}{N_{m,t}}
+      \bm w_{k,m,t}^{(r)},\label{eq:edge-aggregation}\\
+    N_t &= \sum_{m=1}^{M}N_{m,t},\qquad
+    \bm w_{t+1}
+    =\sum_{m=1}^{M}\frac{N_{m,t}}{N_t}\bm w_{m,t}^{(H)}.\label{eq:cloud-aggregation}
+  \end{align}
+\end{subequations}
+式~\eqref{eq:edge-aggregation}表示簇内边缘聚合，式~\eqref{eq:cloud-aggregation}表示每 \(H\) 次边缘聚合后的云端聚合。增大 \(H\) 可减少边—云回传次数，但也会使不同簇沿各自数据分布继续训练更久，扩大边缘模型漂移；因而远距离通信节省与全局收敛不能分开评价。
+
+分层设计的关键代价是新增的分组、调度和层间协调。量化分层方法联合设置两级聚合间隔与消息精度，异构物联网方案还需处理边缘能力差异、异步到达和客户端选择；其收益往往由多个组件共同产生，不能归因于单一聚合层\cite{Liu2023HierarchicalQuantization,Tang2023AdaptiveGradient,Wang2023HierarchicalIoT}。因此，该类方法适合多小区蜂窝、工业物联网和云—边—端集群，但簇内非独立同分布数据会造成边缘聚合偏差，动态节点归属、边缘负载和故障还会增加控制通信。它可以与压缩、AirComp和资源分配组合\cite{Azimi2024HierarchicalOTA}，前提是分别核算端—边与边—云开销，并统一分析压缩误差、信道失真和层级漂移。

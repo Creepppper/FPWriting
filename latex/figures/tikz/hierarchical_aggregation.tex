@@ -1,0 +1,28 @@
+\begin{tikzpicture}[
+  font=\small,
+  >=Latex,
+  cloud/.style={draw, rounded corners=2pt, minimum width=2.15cm, minimum height=0.62cm, align=center, fill=black!10},
+  edge/.style={draw, rounded corners=1.5pt, minimum width=1.85cm, minimum height=0.58cm, align=center, fill=black!6},
+  client/.style={draw, rounded corners=1.2pt, minimum width=1.25cm, minimum height=0.5cm, align=center, fill=black!2},
+  cluster/.style={draw=black!55, dashed, rounded corners=2pt, inner sep=5pt},
+  flow/.style={->, line width=0.55pt}
+]
+  \node[cloud] (cloud) at (0,3.15) {云端服务器\\全局聚合};
+  \node[edge] (e1) at (-2.25,1.65) {边缘服务器 1};
+  \node[edge] (e2) at (2.25,1.65) {边缘服务器 \(M\)};
+  \node[client] (c11) at (-3.1,0.25) {终端 1};
+  \node[client] (c12) at (-1.4,0.25) {终端 \(K_1\)};
+  \node[client] (c21) at (1.4,0.25) {终端 1};
+  \node[client] (c22) at (3.1,0.25) {终端 \(K_M\)};
+
+  \node[cluster, fit=(e1)(c11)(c12), label={[font=\scriptsize]below:边缘簇 1}] (g1) {};
+  \node[cluster, fit=(e2)(c21)(c22), label={[font=\scriptsize]below:边缘簇 \(M\)}] (g2) {};
+
+  \draw[flow] (c11) -- (e1);
+  \draw[flow] (c12) -- (e1);
+  \draw[flow] (c21) -- (e2);
+  \draw[flow] (c22) -- (e2);
+  \draw[flow] (e1) -- node[above left, font=\scriptsize, align=center] {边—云同步\\每 \(H\) 轮一次} (cloud);
+  \draw[flow] (e2) -- node[above right, font=\scriptsize, align=center] {边—云同步\\每 \(H\) 轮一次} (cloud);
+  \node[font=\scriptsize, align=center] at (0,0.92) {端—边交换：高频本地更新与簇内聚合};
+\end{tikzpicture}

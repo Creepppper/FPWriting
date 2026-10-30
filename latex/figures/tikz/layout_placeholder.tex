@@ -1,0 +1,21 @@
+\begin{figure}[t]
+  \centering
+  \resizebox{0.96\columnwidth}{!}{%
+    \begin{tikzpicture}[
+      node distance=10mm,
+      box/.style={draw=black, rounded corners=1.5pt, minimum width=19mm,
+                  minimum height=8mm, align=center, font=\small, fill=black!4},
+      arr/.style={-{Stealth[length=4pt,width=5pt]}, line width=0.6pt}
+    ]
+      \node[box] (device) {无线终端};
+      \node[box, right=of device] (edge) {边缘节点};
+      \node[box, right=of edge] (cloud) {云服务器};
+      \draw[arr] ([yshift=1.2mm]device.east) -- node[above,font=\scriptsize] {局部更新} ([yshift=1.2mm]edge.west);
+      \draw[arr] ([yshift=-1.2mm]edge.west) -- node[below,font=\scriptsize] {模型下发} ([yshift=-1.2mm]device.east);
+      \draw[arr] ([yshift=1.2mm]edge.east) -- node[above,font=\scriptsize] {边缘聚合} ([yshift=1.2mm]cloud.west);
+      \draw[arr] ([yshift=-1.2mm]cloud.west) -- node[below,font=\scriptsize] {全局模型} ([yshift=-1.2mm]edge.east);
+    \end{tikzpicture}%
+  }
+  \caption{版式占位图：端—边—云消息路径（作者绘制，仅用于样张）}
+  \label{fig:sample-placeholder}
+\end{figure}

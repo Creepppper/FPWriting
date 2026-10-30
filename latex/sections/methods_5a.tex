@@ -1,0 +1,37 @@
+\section{通信效率优化方法}\label{sec:methods}
+
+由式~\eqref{eq:total-bits}和式~\eqref{eq:wireless-link}可知，通信开销可以从参与节点、交互频率、单次载荷、无线传输过程和消息路径五个层面削减。本节前半部分依次讨论前三类中的客户端与频率控制、无线资源分配以及模型压缩，并以优化变量而非算法名称组织比较。
+
+\subsection{客户端选择与通信频率控制}\label{subsec:selection-frequency}
+
+客户端选择首先处理“设备很多但每轮无法全部接入”的瓶颈，其直接变量是参与集合 \(\mathcal S_t\) 及其规模。资源感知方法以计算能力、在线状态和完成时限筛除可能拖慢聚合的终端，信道感知方法则把链路质量纳入调度；进一步的长期设计还联合带宽约束和跨轮参与机会\cite{Nishio2019FedCS,Yang2020Scheduling,Xu2021ClientBandwidth}。这些方法的共同点是提高单次上传的可完成性和信息效用，差异在于资源优先会偏向“快设备”，数据效用优先则可能选中通信代价较高的终端\cite{Zhang2024ClientSelectionSurvey}。
+
+通信频率控制进一步改变本地步数 \(E_k\)、触发条件和更新到达时序。固定多步本地训练以计算换取较少全局轮次，自适应方法根据资源预算调整聚合周期，异步方法则允许终端独立上传，并通过阈值、陈旧度权重或通信—计算重叠减少等待和冗余更新\cite{McMahan2017FedAvg,Wang2019AdaptiveFL,Lu2020EAFLM,Liu2021AsyncFL,Ozfatura2021FedTOE}。这一演进使控制对象由“选谁”扩展为“何时上传、服务器何时采用”，但也引入本地漂移和陈旧更新。
+
+因此，该类方法适合设备数量大、间歇在线且算力差异明显的物联网和移动边缘场景，收益主要体现为参与上传数、同步轮数及等待时间下降。其代价是状态上报信令、选择偏差和长期公平性；若弱信道或少数数据分布的终端持续被排除，较低通信量未必对应相同学习目标。与压缩或带宽分配组合时，还需避免“少参与”和“少信息”叠加放大统计偏差\cite{Xu2021ClientBandwidth,Zhang2024ClientSelectionSurvey}。
+
+\subsection{无线资源分配与联合优化}\label{subsec:resource-allocation}
+
+参与者确定后，无线接入的核心瓶颈转为共享频谱、有限发射功率和慢终端造成的轮次时延。该类方法优化带宽 \(b_{k,t}\)、功率 \(P_{k,t}\)、中央处理器（CPU）频率、接入时隙或边缘关联，主要通过提高式~\eqref{eq:uplink-rate}中的速率、降低式~\eqref{eq:uplink-delay}和式~\eqref{eq:uplink-energy}中的时延与能耗来改善训练，而不一定减少待传比特。早期无线联邦学习模型已将局部计算精度、计算资源和上行传输纳入统一约束，后续工作进一步结合收敛条件和信道调度处理学习—通信耦合\cite{Tran2019WirelessOptimization,Dinh2021WirelessConvergence,Yang2020Scheduling}。
+
+资源优化随后由单轮、单业务配置扩展到跨轮和多业务联合决策。长期方案同时考虑客户端选择与带宽，使当前轮的低时延选择受到能量预算和未来参与机会约束；多联邦学习业务并存时，还需在服务之间分配频谱，而边缘辅助方案可把弱终端训练、通信资源与模型稀疏度共同决策\cite{Xu2021ClientBandwidth,Xu2022MultiFLBandwidth,Chen2025EdgeAssistedSparsification}。前两类通常依赖可解释的优化模型，在线学习或强化学习更能适应动态状态，但会增加训练、探索和控制开销。
+
+这类方法适用于蜂窝边缘、多任务接入和信道快速变化的系统，其收益是降低最大轮次时延、发送能耗或掉队概率；主要限制则是信道状态反馈、在线求解复杂度和公平性。特别是“最快终端优先”虽可缩短当轮时间，却可能损害数据代表性，因而资源配置应与选择策略联合评价，并把控制信令计入 \(B_{k,t}^{\mathrm{ctl}}\)\cite{Dinh2021WirelessConvergence,Xu2021ClientBandwidth}。
+
+\subsection{模型压缩与通信载荷削减}\label{subsec:model-compression}
+
+模型压缩直接针对高维参数或梯度导致的单次载荷过大问题，其变量是保留元素数量和每个元素的编码比特数。为区分数学稀疏性与真实传输开销，设待传更新为 \(\bm g_{k,t}\in\mathbb R^d\)，压缩算子为 \(Q(\cdot)\)，本文定义
+\begin{equation}\label{eq:effective-compression}
+  \begin{aligned}
+    \sigma_{k,t}
+      &=1-\frac{\lVert Q(\bm g_{k,t})\rVert_0}{d},\\
+    \rho_{k,t}^{\mathrm{eff}}
+      &=\frac{B_{k,t}^{\mathrm{val}}+B_{k,t}^{\mathrm{idx}}
+      +B_{k,t}^{\mathrm{hdr}}}{B_{k,t}^{\mathrm{raw}}}.
+  \end{aligned}
+\end{equation}
+式~\eqref{eq:effective-compression}中，\(\sigma_{k,t}\) 为稀疏率，\(B^{\mathrm{val}}\)、\(B^{\mathrm{idx}}\) 和 \(B^{\mathrm{hdr}}\) 分别为数值、索引和头部比特，\(B^{\mathrm{raw}}\) 为未压缩载荷；\(\rho_{k,t}^{\mathrm{eff}}\) 是有效传输比，节省比例为 \(1-\rho_{k,t}^{\mathrm{eff}}\)。因此，稀疏率提高并不保证端到端比特量同比下降。
+
+量化与稀疏化的共同目标是降低 \(B_{k,t}^{\mathrm{ul}}\)，但误差来源不同。量化把连续更新映射到有限精度表示，FedPAQ 将周期平均、部分参与和量化置于同一框架；一比特压缩感知则进一步压低数值位宽，但要求服务器利用稀疏先验恢复更新\cite{Reisizadeh2020FedPAQ,Zhang2022OneBitCS}。稀疏化保留 Top-\(k\) 或超过阈值的元素，稀疏三值压缩还结合双向压缩和误差累积，自适应方法则随训练状态在线选择保留比例\cite{Sattler2020STC,Han2020AdaptiveSparsification,Tian2022GradientCompression}。前者主要承担量化噪声，后者还要传输位置索引；误差反馈能够缓解被丢弃更新的累积偏差，却增加客户端状态和计算。
+
+压缩方法适合模型维度高、上行带宽紧张或电池受限的终端，并容易与客户端选择和资源分配组合。近期研究开始联合调整稀疏度、量化级和能耗目标，边缘辅助方案也会按设备状态改变剪枝与资源配置\cite{Marnissi2024AdaptiveSQ,Chen2025EdgeAssistedSparsification}。其局限在于压缩误差、解码或重构成本以及索引、码本和安全交互等附加载荷；例如压缩感知与秘密共享结合时，隐私保护会引入额外计算和消息\cite{Chen2022SecureCompressedFL}。因此，应以式~\eqref{eq:total-bits}中的累计通信量和相同精度目标评价压缩，而不能只比较单轮理论压缩倍数。

@@ -1,0 +1,66 @@
+% !TeX program = xelatex
+% !BIB program = biber
+\documentclass[UTF8,a4paper,twocolumn,zihao=5,fontset=none]{ctexart}
+
+\input{preamble}
+
+\newcommand{\PaperTitleZh}{无线边缘网络中联邦学习通信效率优化方法研究综述}
+\newcommand{\PaperTitleEn}{A Review of Communication-Efficiency Optimization Methods for Federated Learning in Wireless Edge Networks}
+\newcommand{\AuthorZh}{李嘉宇 潘彦哲 张振国 周士栋}
+\newcommand{\AffiliationZh}{电子科技大学，四川 成都 610000}
+\newcommand{\AuthorEn}{Author Name}
+\newcommand{\AffiliationEn}{Affiliation, Chengdu 610000, China}
+
+\hypersetup{
+  pdftitle={\PaperTitleZh},
+  pdfauthor={\AuthorZh},
+  pdfsubject={专业写作基础课程综述论文},
+  pdfkeywords={联邦学习, 无线边缘网络, 通信效率, 模型压缩, 空中计算}
+}
+
+\begin{document}
+
+% 首页题录与摘要保持通栏，正文从摘要后切换为双栏。
+\twocolumn[
+  \begin{@twocolumnfalse}
+    \begin{center}
+      {\heiti\bfseries\zihao{3}\PaperTitleZh\par}
+      \vspace{0.55em}
+      {\fangsongfont\zihao{5}\AuthorZh\par}
+      {\fangsongfont\zihao{5}（\AffiliationZh）\par}
+      \vspace{0.7em}
+      {\rmfamily\bfseries\fontsize{14pt}{17pt}\selectfont\PaperTitleEn\par}
+      \vspace{0.35em}
+      {\rmfamily\fontsize{10.5pt}{12.5pt}\selectfont\AuthorEn\par}
+      {\rmfamily\fontsize{9pt}{11pt}\selectfont\AffiliationEn\par}
+    \end{center}
+
+    \vspace{0.55em}
+    \begin{minipage}{\textwidth}
+      \fangsongfont\zihao{5}\setstretch{1.18}
+      \noindent\textbf{摘要：}无线边缘网络中的联邦学习以模型交换替代原始数据汇聚，但频谱受限、信道时变和终端异构使多轮通信成为主要瓶颈。本文围绕通信轮数、参与节点、传输载荷、无线传输过程和网络组织方式，梳理客户端选择与频率控制、无线资源分配、模型压缩、空中计算和分层联邦学习五类方法，并比较其收益、代价、假设及适用场景。分析表明，各类方法作用于不同成本分量，通信收益通常以精度损失、控制开销、信道协同或部署复杂度为代价；跨层组合需统一核算比特量、时延、能耗和聚合误差。本文可为无线边缘场景下通信优化方法的选择与组合提供参考。
+
+      \noindent\textbf{关键词：}联邦学习；无线边缘网络；通信效率；空中计算；分层联邦学习
+
+      \vspace{0.45em}
+      {\rmfamily\fontsize{9pt}{11pt}\selectfont
+      \noindent\textbf{Abstract:} Federated learning replaces raw-data collection with iterative model exchange, yet limited spectrum, time-varying channels, and heterogeneous devices make communication a major bottleneck in wireless edge networks. This review organizes existing approaches according to the cost component they primarily affect: communication rounds and participating clients, radio-resource use, transmitted payload, over-the-air aggregation, and network hierarchy. Their benefits, additional costs, operating assumptions, and suitable deployment scenarios are compared under a common framework. The analysis shows that communication gains are commonly traded for learning distortion, control overhead, channel coordination, or deployment complexity. Consequently, cross-layer combinations should be evaluated through joint accounting of transmitted bits, latency, energy consumption, and aggregation error. The review provides a structured basis for selecting and combining communication-efficiency techniques in wireless edge federated learning.
+
+      \noindent\textbf{Keywords:} federated learning; wireless edge networks; communication efficiency; over-the-air computation; hierarchical federated learning}
+    \end{minipage}
+    \vspace{0.9em}
+    \hrule height 0.4pt
+    \vspace{0.9em}
+  \end{@twocolumnfalse}
+]
+
+\input{sections/introduction}
+\input{sections/system_model}
+\input{sections/methods_5a}
+\input{sections/methods_5b}
+\input{sections/discussion_conclusion}
+
+\clearpage
+\printbibliography[heading=bibintoc,title={参考文献}]
+
+\end{document}

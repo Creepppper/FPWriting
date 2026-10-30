@@ -1,0 +1,152 @@
+% 基于 EmpyreanHYR 双栏中文论文模板的版式思想重构。
+% 上游许可与版本见 licenses/upstream_template.md 及
+% licenses/upstream_template_LICENSE.txt。
+
+% ---------- 字体：优先课程目标字体，缺失时自动后备 ----------
+\usepackage{fontspec}
+\usepackage{xeCJK}
+
+\IfFontExistsTF{Times New Roman}{
+  \setmainfont{Times New Roman}
+}{
+  \setmainfont{TeX Gyre Termes}
+}
+
+\IfFontExistsTF{SimSun}{
+  \setCJKmainfont{SimSun}[BoldFont=SimHei]
+}{
+  \setCJKmainfont{FandolSong}[BoldFont=FandolSong-Bold]
+}
+\IfFontExistsTF{SimHei}{
+  % SimHei 通常只有常规字形；启用受控伪粗体以避免标题层级调用
+  % \bfseries 时发生字形替代警告。
+  \setCJKsansfont{SimHei}[AutoFakeBold=2]
+  \setCJKfamilyfont{zhhei}{SimHei}[AutoFakeBold=2]
+}{
+  \setCJKsansfont{FandolHei}[BoldFont=FandolHei-Bold]
+  \setCJKfamilyfont{zhhei}{FandolHei}[BoldFont=FandolHei-Bold]
+}
+\IfFontExistsTF{FandolFang}{
+  \setCJKfamilyfont{zhfangsong}{FandolFang}[AutoFakeBold=2]
+}{
+  \setCJKfamilyfont{zhfangsong}{FandolSong}[BoldFont=FandolSong-Bold]
+}
+\setCJKmonofont{FandolFang}[AutoFakeBold=2]
+\newcommand{\fangsongfont}{\CJKfamily{zhfangsong}}
+\newcommand{\heiti}{\CJKfamily{zhhei}}
+
+% ---------- 页面与双栏 ----------
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,
+            headheight=14pt,headsep=0.45cm,footskip=0.8cm]{geometry}
+\setlength{\columnsep}{0.8cm}
+\setlength{\columnseprule}{0pt}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\linespread{1.08}
+\usepackage{indentfirst}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+\raggedbottom
+
+% ---------- 标题层级 ----------
+\ctexset{
+  section={
+    format=\heiti\bfseries\zihao{-4},
+    number=\arabic{section},
+    aftername=\hspace{0.55em},
+    beforeskip=0.85em,
+    afterskip=0.35em,
+    indent=0pt
+  },
+  subsection={
+    format=\heiti\bfseries\zihao{5},
+    number=\thesection.\arabic{subsection},
+    aftername=\hspace{0.5em},
+    beforeskip=0.65em,
+    afterskip=0.25em,
+    indent=0pt
+  },
+  subsubsection={
+    format=\heiti\zihao{5},
+    number=\thesubsection.\arabic{subsubsection},
+    aftername=\hspace{0.45em},
+    beforeskip=0.5em,
+    afterskip=0.2em,
+    indent=0pt
+  }
+}
+
+% ---------- 数学 ----------
+\usepackage{amsmath,amssymb,mathtools,bm}
+\numberwithin{equation}{section}
+
+% ---------- 图表 ----------
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,array,threeparttable,multirow,makecell}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit}
+\usepackage{siunitx}
+\sisetup{detect-all}
+\usepackage{needspace}
+\usepackage{enumitem}
+
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\captionsetup{
+  font={small},
+  labelfont=bf,
+  labelsep=quad,
+  justification=centering,
+  singlelinecheck=true,
+  skip=4pt
+}
+
+% ---------- 页眉页脚 ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\zihao{-5}\fangsongfont 无线边缘网络中联邦学习通信效率优化方法研究综述}
+\fancyhead[R]{\rmfamily\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ---------- GB/T 7714—2015 顺序编码参考文献 ----------
+\usepackage[
+  backend=biber,
+  style=gb7714-2015,
+  sorting=none,
+  giveninits=true,
+  gbpub=false,
+  gbnamefmt=lowercase
+]{biblatex}
+\addbibresource{references.bib}
+\setlength{\bibhang}{2em}
+\setlength{\bibitemsep}{0.05em}
+\renewcommand*{\bibfont}{\zihao{5}\selectfont\setstretch{1.0}}
+\AtBeginBibliography{\RaggedRight\setlength{\emergencystretch}{2em}}
+
+% ---------- 超链接与中文交叉引用 ----------
+\usepackage[hidelinks,unicode,bookmarks=true,bookmarksnumbered=true]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\crefname{figure}{图}{图}
+\Crefname{figure}{图}{图}
+\crefname{table}{表}{表}
+\Crefname{table}{表}{表}
+\crefname{equation}{式}{式}
+\Crefname{equation}{式}{式}
+\crefname{section}{第}{第}
+\Crefname{section}{第}{第}
+\crefname{subsection}{第}{第}
+\Crefname{subsection}{第}{第}
+
+% ---------- 常用列类型 ----------
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}

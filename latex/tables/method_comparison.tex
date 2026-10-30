@@ -1,0 +1,68 @@
+\begin{table*}[t]
+  \centering
+  \caption{五类通信效率优化方法的统一比较}
+  \label{tab:method-comparison}
+  \begin{threeparttable}
+    \fontsize{7.1pt}{8.6pt}\selectfont
+    \setlength{\tabcolsep}{2.8pt}
+    \renewcommand{\arraystretch}{1.22}
+    \begin{tabularx}{\textwidth}{
+      @{}>{\centering\arraybackslash}p{1.35cm}
+      >{\centering\arraybackslash}p{1.25cm}
+      >{\raggedright\arraybackslash}p{1.72cm}
+      >{\raggedright\arraybackslash}p{1.62cm}
+      >{\raggedright\arraybackslash}p{1.62cm}
+      >{\raggedright\arraybackslash}p{1.68cm}
+      >{\raggedright\arraybackslash}p{1.62cm}
+      >{\raggedright\arraybackslash}X@{}}
+      \toprule
+      方法类别 & 优化对象 & 代表机制 & 主要收益 & 额外代价 & 关键假设 & 适用场景 & 主要局限 \\
+      \midrule
+      客户端选择与频率控制
+        & \(T,\mathcal S_t,E_k\)
+        & 效用选择；异步或事件触发
+        & 少上传、少同步、少等待
+        & 状态上报、偏差与陈旧
+        & 状态可观测；更新具代表性
+        & 大规模异构物联网
+        & 弱设备可能长期缺席，影响公平与收敛\cite{Nishio2019FedCS,Wang2019AdaptiveFL,Zhang2024ClientSelectionSurvey} \\
+      无线资源分配
+        & 带宽、功率、时隙、CPU频率及边缘关联
+        & 跨轮资源与关联联合调度
+        & 降低时延、能耗和掉队率
+        & 信道反馈、求解和信令
+        & 状态可估计；链路模型有效
+        & 蜂窝、多业务、无人机网络
+        & 改变传输效率但未必减少累计比特\cite{Dinh2021WirelessConvergence,Xu2022MultiFLBandwidth,Fan2025EdgeAssociation,Meng2025UAVEnergy} \\
+      模型与梯度压缩
+        & \(B_{k,t}^{\mathrm{ul}}\)、稀疏度和量化位宽
+        & 量化、稀疏、误差反馈
+        & 减少载荷和发送能耗
+        & 失真、索引和重构计算
+        & 更新可压缩；误差可补偿
+        & 高维模型、窄带终端
+        & 理论压缩率不等于有效传输比\cite{Reisizadeh2020FedPAQ,Sattler2020STC,Marnissi2024AdaptiveSQ} \\
+      AirComp
+        & 多用户上传时间、频谱及聚合误差
+        & 同步模拟发送；波形域求和
+        & 传输与聚合并行
+        & 信道状态、同步、功控、噪声
+        & 函数可加；物理层可协同
+        & 密集同步无线接入
+        & 深衰落和时变信道会破坏对齐\cite{Zhu2020BroadbandAnalog,Tegin2023TimeVaryingOTA,Oh2024SparseOneBitOTA} \\
+      分层联邦学习
+        & 消息路径、簇划分及两级聚合间隔 \(H\)
+        & 边缘高频、云端低频聚合
+        & 少回传、易扩展
+        & 部署、分组、控制和漂移
+        & 边缘可用；簇权重合理
+        & 多小区、云—边—端集群
+        & 簇偏差、节点迁移和故障增加协调难度\cite{Liu2020HierarchicalFL,Liu2023HierarchicalQuantization,Wang2023HierarchicalIoT,Zhong2022HierarchicalHeterogeneous} \\
+      \bottomrule
+    \end{tabularx}
+    \begin{tablenotes}[flushleft]
+      \footnotesize
+      \item 注：\(T\) 为全局轮数，\(\mathcal S_t\) 为参与集合，\(E_k\) 为本地步数；表中内容不用于比较不同实验设置中的百分比。
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table*}

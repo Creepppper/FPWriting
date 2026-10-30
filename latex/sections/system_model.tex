@@ -1,0 +1,64 @@
+\section{无线边缘网络中的联邦学习通信模型与评价指标}\label{sec:system-model}
+
+\subsection{系统模型与基本训练流程}\label{subsec:training-model}
+
+中心式无线边缘联邦学习通常包含一个聚合服务器和 \(K\) 个终端，服务器可部署在接入点、边缘节点或云端，分层系统还可在边缘与云之间增加第二级聚合\cite{Tran2019WirelessOptimization,Liu2020HierarchicalFL}。第 \(k\) 个终端保存数据集 \(\mathcal D_k=\{\xi_{k,i}\}_{i=1}^{n_k}\)，其中 \(n_k\) 为样本数；训练时数据不离开终端，网络传输的是模型参数、梯度或其编码表示\cite{McMahan2017FedAvg}。为统一后续方法的学习约束，全局经验风险写为
+\begin{equation}\label{eq:global-objective}
+  \begin{aligned}
+    \min_{\bm w}\quad F(\bm w)
+      &= \sum_{k=1}^{K} q_k F_k(\bm w), \\
+    F_k(\bm w)
+      &= \frac{1}{n_k}\sum_{i=1}^{n_k}
+         \ell(\bm w;\xi_{k,i}), \\
+    q_k&=\frac{n_k}{N},
+    \qquad N=\sum_{j=1}^{K}n_j .
+  \end{aligned}
+\end{equation}
+式中，\(\bm w\) 为全局模型参数，\(F_k\) 为终端 \(k\) 的局部经验风险，\(\ell\) 为单样本损失，\(q_k\) 为按样本数确定的聚合权重，\(N\) 为总样本数。式~\eqref{eq:global-objective}表明，通信削减必须以维持学习目标为约束，不能把少传数据本身等同于训练有效。
+
+一轮训练由模型下发、本地更新、更新上传和服务器聚合组成。设 \(t\) 为全局通信轮，\(\mathcal S_t\) 为参与集合，\(e\) 为本地步，\(\mathcal B_{k,t}^{(e)}\subseteq\mathcal D_k\) 为终端 \(k\) 的小批量样本，终端以学习率 \(\eta_t\) 执行随机梯度下降
+\begin{equation}\label{eq:local-update}
+  \begin{aligned}
+    \bm g_{k,t}^{(e)}
+      &=\frac{1}{\lvert\mathcal B_{k,t}^{(e)}\rvert}
+        \sum_{\xi\in\mathcal B_{k,t}^{(e)}}
+        \nabla\ell\!\left(\bm w_{k,t}^{(e)};\xi\right),\\
+    \bm w_{k,t}^{(e+1)}
+      &=\bm w_{k,t}^{(e)}-\eta_t\bm g_{k,t}^{(e)}.
+  \end{aligned}
+\end{equation}
+完成 \(E_k\) 步后，FedAvg 按参与终端的数据量聚合为\cite{McMahan2017FedAvg}
+\begin{equation}\label{eq:fedavg}
+  \bm w_{t+1}
+  =\sum_{k\in\mathcal S_t}
+   \frac{n_k}{\sum_{j\in\mathcal S_t}n_j}
+   \bm w_{k,t}^{(E_k)} .
+\end{equation}
+式~\eqref{eq:local-update}和式~\eqref{eq:fedavg}把本地步数、参与规模与聚合权重联系起来：增加 \(E_k\) 或缩小 \(\mathcal S_t\) 可减少当期交互，却可能改变更新时效性和数据代表性，后续比较需同时记录其学习代价。
+
+\subsection{通信成本分解与评价指标}\label{subsec:communication-metrics}
+
+累计通信量需要把轮数、参与规模、上下行载荷及控制信令置于同一口径。设 \(T\) 为达到预定精度或损失阈值所需的全局轮数，\(B_t^{\mathrm{dl}}\) 为第 \(t\) 轮下行广播量，\(B_{k,t}^{\mathrm{ul}}\) 和 \(B_{k,t}^{\mathrm{ctl}}\) 分别为终端 \(k\) 的上行载荷与调度、索引或信道反馈等控制比特，则本文采用
+\begin{equation}\label{eq:total-bits}
+  \begin{split}
+    B_{\mathrm{tot}}=\sum_{t=0}^{T-1}\biggl[
+      B_t^{\mathrm{dl}}+\sum_{k\in\mathcal S_t}
+      \bigl(B_{k,t}^{\mathrm{ul}}+B_{k,t}^{\mathrm{ctl}}\bigr)
+    \biggr].
+  \end{split}
+\end{equation}
+式~\eqref{eq:total-bits}是统一比较口径而非某种算法的性能结论；其中下行默认按基站一次广播的空口发送量统计，若按全部终端的接收总量核算，则必须相应计入接收节点数。该式说明，减少单轮载荷只有在没有显著增加 \(T\) 或控制开销时，才会降低累计通信量\cite{Ge2025EfficientFLSurvey}。
+
+无线链路进一步把比特量映射为时延和能耗。对准静态上行时隙，令 \(b_{k,t}\)（\si{\hertz}）、\(P_{k,t}\)（\si{\watt}）、\(h_{k,t}\) 分别表示分配带宽、发射功率和等效信道功率增益，\(N_0\)（\si{\watt\per\hertz}）为噪声功率谱密度，\(I_{k,t}\)（\si{\watt}）为带内干扰功率，则常用抽象关系为\cite{Tran2019WirelessOptimization,Dinh2021WirelessConvergence}
+\begin{subequations}\label{eq:wireless-link}
+  \begin{align}
+    R_{k,t}&=b_{k,t}\log_2\!\left(
+      1+\frac{P_{k,t}h_{k,t}}
+      {N_0b_{k,t}+I_{k,t}}\right),\label{eq:uplink-rate}\\
+    \tau_{k,t}^{\mathrm{ul}}
+      &=\frac{B_{k,t}^{\mathrm{ul}}}{R_{k,t}},\label{eq:uplink-delay}\\
+    E_{k,t}^{\mathrm{ul}}
+      &=P_{k,t}\tau_{k,t}^{\mathrm{ul}}.\label{eq:uplink-energy}
+  \end{align}
+\end{subequations}
+式~\eqref{eq:wireless-link}中，\(R_{k,t}\)（\si{\bit\per\second}）、\(\tau_{k,t}^{\mathrm{ul}}\)（\si{\second}）和 \(E_{k,t}^{\mathrm{ul}}\)（\si{\joule}）分别为上行速率、传输时延和发送能耗。由此可见，压缩主要改变 \(B_{k,t}^{\mathrm{ul}}\)，资源分配主要改变 \(R_{k,t}\)，客户端与频率控制改变 \(T\) 和 \(\mathcal S_t\)，分层架构则改变消息路径；这些量必须在相同精度目标和明确无线假设下比较，才能判断端到端通信效率是否真正提高\cite{Dinh2021WirelessConvergence,Zhang2023EdgeFLSurvey}。

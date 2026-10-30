@@ -1,0 +1,21 @@
+\begin{table}[t]
+  \centering
+  \caption{版式组件检查表}
+  \label{tab:sample-layout}
+  \begin{threeparttable}
+    \small
+    \begin{tabularx}{\columnwidth}{@{}lYYY@{}}
+      \toprule
+      组件 & 编号 & 引用 & 样张状态 \\
+      \midrule
+      原生公式 & 自动 & \texttt{eq:} & 已配置 \\
+      三线表 & 自动 & \texttt{tab:} & 已配置 \\
+      TikZ 图 & 自动 & \texttt{fig:} & 临时占位 \\
+      参考文献 & 顺序 & \texttt{cite} & GB/T 7714 \\
+      \bottomrule
+    \end{tabularx}
+    \begin{tablenotes}[flushleft]\footnotesize
+      \item 注：该表仅测试排版功能，不包含研究数据。
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}

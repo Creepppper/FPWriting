@@ -1,0 +1,43 @@
+\begin{tikzpicture}[
+  font=\small,
+  >=Latex,
+  panel/.style={draw=black!55, rounded corners=2pt, minimum width=7.9cm, minimum height=3.55cm},
+  client/.style={draw, rounded corners=1.5pt, minimum width=1.45cm, minimum height=0.52cm, align=center, fill=black!3},
+  block/.style={draw, rounded corners=1.5pt, minimum width=1.65cm, minimum height=0.58cm, align=center, fill=black!7},
+  sum/.style={draw, circle, minimum size=0.7cm, inner sep=0pt, fill=black!7},
+  flow/.style={->, line width=0.55pt}
+]
+  \node[panel] (leftpanel) at (-4.15,0) {};
+  \node[panel] (rightpanel) at (4.15,0) {};
+  \node[font=\bfseries] at (-4.15,1.43) {数字正交传输};
+  \node[font=\bfseries] at (4.15,1.43) {空中模拟聚合};
+
+  \node[client] (ld1) at (-7.15,0.72) {终端 1};
+  \node[client] (ld2) at (-7.15,0) {终端 2};
+  \node[client] (ld3) at (-7.15,-0.72) {终端 \(K\)};
+  \node[block] (dec1) at (-4.55,0.72) {逐用户解码};
+  \node[block] (dec2) at (-4.55,0) {逐用户解码};
+  \node[block] (dec3) at (-4.55,-0.72) {逐用户解码};
+  \node[sum] (lsum) at (-1.55,0) {\(\sum\)};
+  \draw[flow] (ld1) -- node[above, font=\scriptsize] {资源 1} (dec1);
+  \draw[flow] (ld2) -- node[above, font=\scriptsize] {资源 2} (dec2);
+  \draw[flow] (ld3) -- node[above, font=\scriptsize] {资源 \(K\)} (dec3);
+  \draw[flow] (dec1) -- (lsum);
+  \draw[flow] (dec2) -- (lsum);
+  \draw[flow] (dec3) -- (lsum);
+  \draw[flow] (lsum) -- ++(0.72,0) node[right, font=\scriptsize] {聚合值};
+  \node[font=\scriptsize, align=center] at (-4.15,-1.34) {独立时隙或子载波：先可靠解码，再在应用层求和};
+
+  \node[client] (ra1) at (1.12,0.72) {终端 1};
+  \node[client] (ra2) at (1.12,0) {终端 2};
+  \node[client] (ra3) at (1.12,-0.72) {终端 \(K\)};
+  \node[sum] (channel) at (4.18,0) {\(\sum\)};
+  \node[block] (scale) at (6.25,0) {接收缩放\(a_t\)};
+  \draw[flow] (ra1) -- node[above, sloped, font=\scriptsize] {\(h_{1,t}\beta_{1,t}x_{1,t}\)} (channel);
+  \draw[flow] (ra2) -- node[above, font=\scriptsize] {\(h_{2,t}\beta_{2,t}x_{2,t}\)} (channel);
+  \draw[flow] (ra3) -- node[below, sloped, font=\scriptsize] {\(h_{K,t}\beta_{K,t}x_{K,t}\)} (channel);
+  \draw[flow] (channel) -- node[above, font=\scriptsize] {\(y_t\)} (scale);
+  \draw[flow] (scale) -- ++(0.82,0) node[right, font=\scriptsize] {\(\widehat{s}_t\)};
+  \draw[flow] (4.18,1.0) -- node[right, font=\scriptsize] {噪声 \(n_t\)} (channel);
+  \node[font=\scriptsize, align=center] at (4.15,-1.34) {同频同时发送：同步、信道估计与功率对齐后在信号域求和};
+\end{tikzpicture}
