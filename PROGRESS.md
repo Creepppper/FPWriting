@@ -5,10 +5,10 @@
 ## 项目状态
 
 - 项目：无线边缘网络中联邦学习通信效率优化方法研究综述
-- 当前阶段：LaTeX 重构阶段 7——全文事实、引用、版权和版式终审
+- 当前阶段：V2.3——共同第一作者角标改为上箭头
 - 当前状态：待用户确认
 - 最近更新：2026-10-31（Asia/Shanghai）
-- 本轮范围：完成全文事实、引用、版权、公式、写作和版式终审，生成最终 PDF、审计记录和构建说明；不覆盖 v1.2 DOCX，不提交 Git
+- 本轮范围：将中英文作者及贡献说明中的共同第一作者标记由 `†` 改为清晰的 `↑`，同步所有现行 PDF
 
 ## 阶段清单
 
@@ -28,6 +28,15 @@
 - [x] 阶段 6：修订、最终复核、课程格式DOCX与Markdown交付
 - [x] LaTeX 重构阶段 0—6：诊断、结构学习、内容蓝图、工程搭建、全文重写与初稿编译
 - [x] LaTeX 重构阶段 7：事实、引用、版权、公式、写作和版式终审
+- [x] V2 修订准备：当前 LaTeX 稿只读审查、严格字数统计与逐节修订计划
+- [x] V2 阶段 1：重写第 2 节，补齐训练流程与评价指标解释，并完成编译检查
+- [x] V2 阶段 2：重写第 3.1～3.3 节，完成机制解释、场景比较和版面检查
+- [x] V2 阶段 3：重写第 3.4～3.5 节，统一公式与原创图符号，并完成版权和版面检查
+- [x] V2 阶段 4：增强第 4～5 节，新增通信成本映射图，拆分比较表并完成编译检查
+- [x] V2 阶段 5：全文语言统一、技术核查、双轮编译与 V2 最终交付
+- [x] V2.1：简化图 1—图 3 图注，保留文献角标并生成独立 PDF
+- [x] V2.2：统一中英文首页题录、作者间距、单位角标与共同第一作者说明
+- [x] V2.3：将共同第一作者标记统一改为上箭头 `↑`
 
 ## 阶段 0 产物
 
@@ -53,7 +62,7 @@
 ## 已确认决定
 
 - 论文按本科课程文献综述定位，不包装为原创研究。
-- 中文正文按 4500～5500 字验收，目标约 5000 字；摘要和参考文献不计入。
+- 中文正文以约 5000 字为早期目标；用户已于 2026-10-31 澄清教师未规定 5500 字硬上限，10000 字以内属于常见篇幅。后续扩写以论证需要为准，不靠重复背景、文献堆砌或空泛趋势凑字数。
 - 最终参考文献至少 40 篇，建议 42～48 篇；中文学术文献目标 12～18 篇。
 - 时间覆盖必须兼顾经典早期文献与 2022—2026 年文献。
 - 引文采用顺序编码制，参考文献标注文献类型。
@@ -753,3 +762,378 @@
 ## 下一步（待用户确认）
 
 阶段 7 已完成并停止。提交前由用户填写真实中英文作者与单位信息，并按 `latex/output/build_instructions.md` 重新编译；若正文论断范围不扩大，无需重新检索或增加文献。
+
+## 作者署名更新（2026-10-31）
+
+- `latex/main.tex` 中 `\AuthorZh` 由“作者姓名”改为“李嘉宇\quad 潘彦哲\quad 张振国\quad 周士栋”（构建时 `\quad` 为 1em 固定间距）；`\AuthorEn` 同步改为拼音“Li Jiayu, Pan Yanzhe, Zhang Zhenguo, Zhou Shidong”。
+- 中文姓名之间按要求不使用逗号，改用 `\quad` 产生可见间隔；普通空格会被 xeCJK 吞掉，直接键入空格在 PDF 中不可见。
+- 已重新构建 `latex/main.pdf` 和 `latex/output/无线边缘网络中联邦学习通信效率优化方法研究综述_final.pdf`：7 页 A4，作者信息进入 PDF 元数据，日志无未定义引用、字体缺失和 overfull/underfull 警告。
+- 未改动正文、图表、公式与参考文献；未执行 Git 提交或推送。
+- 仍为占位或未同步：单位行“电子科技大学，四川 成都 610000”与英文 `Affiliation, Chengdu 610000, China`；`final/` 下的 DOCX 和 `format_checklist.md` 中作者信息仍为旧占位。
+
+## V2 修订准备：当前 LaTeX 稿只读审查（2026-10-31）
+
+### 已完成
+
+- [x] 阅读 `AGENTS.md`、`PROGRESS.md`、当前全部 LaTeX 源文件、`references.bib`、`licenses/figure_rights.md`、文献库核验记录和当前 `latex/main.pdf`。
+- [x] 确认当前活跃入口为 `latex/main.tex`，当前审查产物为默认作业名生成的 `latex/main.pdf`；文档化的正式命名构建则输出到 `latex/output/`。
+- [x] 按“不计题录、摘要、关键词、标题、公式、图表文字和参考文献”的严格口径统计正文 4553 个汉字，并在 `REVISION_PLAN_V2.md` 记录各节明细。
+- [x] 统计 8 组原生公式（13 个编号公式或子公式）、2 幅原创 TikZ 图、1 张比较表和 43 篇参考文献，其中中文 17 篇。
+- [x] 核查 43 个正文唯一引用键与 43 个 BibTeX 条目双向闭合；当前 PDF 中引用编号可见，无栅格图片或图片公式。
+- [x] 完成指定技术问题核查：本地步数不能表述为减少“当期交互”；异步机制不保证减少累计通信；资源分配主要改变速率、时延和能耗；FedAvg 缺局部初始化；AirComp 图式基本一致但缺目标对齐说明；分层图式缺局部初始化和下行箭头；表 1 多处收益/机制需要条件化和补引文。
+- [x] 逐页检查当前 7 页 PDF，确认英文单位仍有 `Affiliation` 占位、英文断词较多、表 1 使用 7.1 pt 小字号，第 5 页存在大块右栏及页底空白。
+- [x] 建立 `REVISION_PLAN_V2.md`，逐节记录现有问题、拟增加内容、预计净增字数、所需文献、公式和图表调整；计划净增约 2020 个汉字，不增加图片。
+- [x] 本阶段未修改 `latex/main.tex`、正文分节、公式、图表、`references.bib` 或任何 PDF，也未执行 Git 提交或推送。
+
+### 已确认问题
+
+- 当前 `latex/main.log` 仍有 `There were undefined references` 和 `Please (re)run Biber`，说明作者信息更新后的最后一次默认作业名构建没有完成稳定化所需的完整轮次。后续修改完成后必须执行完整 `latexmk` 构建并重新审计日志。
+- `figure_rights.md` 记录的最终图注含“原创归纳图、未直接复用第三方图片”说明，但当前两个实际图注只有文献引用；后续需保持成稿和版权记录一致。
+- 当前严格正文 4553 字；若净增 1800—2200 字，成稿将约为 6353—6753 字，与 `AGENTS.md` 的 4500—5500 字硬性要求冲突。
+
+### 本阶段新增或修改文件
+
+1. `REVISION_PLAN_V2.md`（新增）
+2. `PROGRESS.md`（更新断点）
+
+## 继续工作所需文件（V2 只读审查后）
+
+1. `AGENTS.md`
+2. `PROGRESS.md`
+3. `REVISION_PLAN_V2.md`
+4. `latex/main.tex`
+5. `latex/preamble.tex`
+6. `latex/sections/introduction.tex`
+7. `latex/sections/system_model.tex`
+8. `latex/sections/methods_5a.tex`
+9. `latex/sections/methods_5b.tex`
+10. `latex/sections/discussion_conclusion.tex`
+11. `latex/tables/method_comparison.tex`
+12. `latex/figures/tikz/aircomp_mechanism.tex`
+13. `latex/figures/tikz/hierarchical_aggregation.tex`
+14. `latex/references.bib`
+15. `latex/licenses/figure_rights.md`
+16. `literature/final_library.csv`
+17. `literature/evidence_matrix.csv`
+18. `latex/main.pdf`
+
+## 下一步（待用户确认）
+
+本次只读审查与修订计划已完成并停止。开始 V2 正文修改前，用户需确认“净增 1800—2200 字”是否明确覆盖课程原有 5500 字上限；在该冲突解决前，不进入正文修改阶段。
+
+## V2 阶段 1：重写第 2 节并修正相关技术问题（2026-10-31）
+
+### 已完成
+
+- [x] 仅重写 `latex/sections/system_model.tex` 的第 2.1～2.2 节，未改动其他章节、图片、表格或参考文献库。
+- [x] 先以自然语言补齐“模型下发—客户端选择—本地训练—上传更新—服务器聚合”的一轮训练流程。
+- [x] 在式（2.2）中加入局部模型初始化 `w_{k,t}^{(0)}=w_t`，并逐一解释全局经验风险、局部 SGD 和 FedAvg 公式中的变量与含义。
+- [x] 修正本地步数表述：增加 `E_k` 不改变当前轮是否通信，只可能在收敛允许时减少达到目标精度所需的全局轮数，同时可能加重 non-IID 数据造成的本地漂移。
+- [x] 分别解释通信轮数、参与节点数、单轮比特量、墙钟时延和通信能耗，明确比特量、速度与能耗不是同一指标。
+- [x] 在式（2.4）后加入明确标注的说明性计算；该算例只用于解释累计通信量，不作为实验结果。
+- [x] 说明五类优化方法分别影响式（2.4）的轮数、参与集合、载荷、传输—聚合过程或消息路径。
+- [x] 解释式（2.5）中带宽、功率、信道质量、速率、时延和能耗的关系；明确提高功率不保证总能耗下降，并区分下行广播比特统计与最慢接收用户造成的时延。
+- [x] 严格正文口径下，第 2.1 节由 346 增至 567 个汉字，第 2.2 节由 358 增至 737 个汉字，第 2 节净增 600 个汉字；全文严格正文据此由 4553 增至 5153 个汉字。
+
+### 编译与检查
+
+- 活跃入口：`latex/main.tex`。
+- 编译命令：在 `latex/` 目录执行 `latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex`。
+- `latex/main.pdf` 已完成 XeLaTeX/Biber 稳定构建，共 7 页 A4。
+- 式（2.1）—（2.5c）编号连续；相关 `\eqref` 与 43 条文献引用均已解析。
+- 最终日志无未定义引用、重复标签、字体缺失、missing character、overfull 或 underfull 警告。
+- PDF 字体均已嵌入；用 Poppler 渲染前 3 页后检查，第 2 节公式、双栏换页和正文行宽未见异常。
+- 自动 `pdf_qa.py` 因环境缺少 PyMuPDF 未能运行，已改用 `pdfinfo`、`pdffonts`、日志扫描和逐页渲染完成替代检查。
+- 仍有两类既存的非阻塞提示：模板请求的 LaTeX 发行日期晚于环境实际版本；作者名中的固定间距命令触发 3 条 PDF 书签字符串替换提示。二者未影响正文、公式编号或版面。
+
+### 字数口径决定
+
+用户已明确：教师没有规定 5500 字硬上限，10000 字以内为常见篇幅。因此，`REVISION_PLAN_V2.md` 中关于“净增计划与 5500 字上限冲突”的判断视为历史问题，现已解除；后续仍应避免无证据扩写和重复填充。
+
+### 本阶段新增或修改文件
+
+1. `latex/sections/system_model.tex`
+2. `latex/main.pdf`（重新编译）
+3. `PROGRESS.md`
+
+## 继续工作所需文件（V2 阶段 1 后）
+
+1. `AGENTS.md`
+2. `PROGRESS.md`
+3. `REVISION_PLAN_V2.md`
+4. `latex/main.tex`
+5. `latex/preamble.tex`
+6. `latex/sections/system_model.tex`
+7. `latex/references.bib`
+8. `latex/main.pdf`
+
+## 下一步（待用户确认）
+
+V2 阶段 1 已完成并停止。等待用户确认第 2 节内容与版面；未经明确授权，不继续修改第 3 节或其他正文。
+
+## V2 阶段 2：重写和扩充第 3.1～3.3 节（2026-10-31）
+
+### 已完成
+
+- [x] 仅重写 `latex/sections/methods_5a.tex` 的第 3.1～3.3 节，未修改第 3.4～3.5 节、图表和 `references.bib`。
+- [x] 三个小节统一按“无线边缘瓶颈—优化变量—基本机制—代表性研究综合—收益原因—附加代价—适用边界—下节衔接”组织，未采用逐篇摘要式写法。
+- [x] 第 3.1 节区分随机、资源感知和数据效用感知选择，解释快设备优先造成选择偏差的原因；区分同步、异步和事件触发机制，并定义更新陈旧度。
+- [x] 明确异步机制主要减少同步等待；只有阈值或事件触发等机制过滤更新时，才可能直接减少上传次数或累计比特。
+- [x] 第 3.2 节分别解释带宽、功率、时隙、CPU 频率和边缘关联的作用，说明最慢终端如何决定同步轮次时间，并区分单轮与跨轮资源配置。
+- [x] 明确资源分配通常改变时延、能耗或掉队率，而不直接减少待传比特；信道反馈、在线求解和状态过期均作为额外开销讨论。
+- [x] 第 3.3 节分别解释量化、稀疏化和误差反馈，说明稀疏更新为何需要位置索引，以及残差如何在后续轮次补偿。
+- [x] 式（3.1）仍保持一组原生公式；将第一行的泛化压缩算子改为稀疏算子 `S(·)`，并逐项解释稀疏率、数值比特、索引比特、头部比特、原始载荷和有效传输比。
+- [x] 原有 20 个唯一引用键全部保留，新增引用键为 0；相关事实均由现有已核验文献支撑。
+
+### 字数统计
+
+- 第 3.1 节：449 → 717 个汉字，净增 268。
+- 第 3.2 节：444 → 750 个汉字，净增 306。
+- 第 3.3 节：502 → 766 个汉字，净增 264。
+- 本阶段合计净增 838 个汉字，位于要求的 700～850 区间；全文严格正文由 5153 增至约 5991 个汉字。
+
+### 编译与版面检查
+
+- 在 `latex/` 目录执行 `latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex`，XeLaTeX/Biber 构建稳定完成。
+- `latex/main.pdf` 当前为 8 页 A4；式（3.1）与第 3.1～3.3 节交叉引用均已解析，43 条参考文献引用正常。
+- 最终日志无未定义引用、重复标签、字体缺失、missing character、overfull 或 underfull 警告。
+- 已渲染检查第 3～5 页：没有公式跨栏、标题孤行或新增大块空白；扩写后原第 5 页的大面积空白明显减少。
+- 初次检查发现“比例”被拆成页末和页首孤字，已用不可分页词组修正；复编后第 4 页以完整句子开头。
+- 仍保留既存的 LaTeX 发行版本提示和作者间距造成的 3 条 PDF 字符串替换提示，均不影响本阶段正文与版面。
+
+### 本阶段新增或修改文件
+
+1. `latex/sections/methods_5a.tex`
+2. `latex/main.pdf`（重新编译）
+3. `PROGRESS.md`
+
+## 继续工作所需文件（V2 阶段 2 后）
+
+1. `AGENTS.md`
+2. `PROGRESS.md`
+3. `REVISION_PLAN_V2.md`
+4. `latex/main.tex`
+5. `latex/sections/system_model.tex`
+6. `latex/sections/methods_5a.tex`
+7. `latex/sections/methods_5b.tex`
+8. `latex/references.bib`
+9. `literature/evidence_matrix.csv`
+10. `latex/main.pdf`
+
+## 下一步（待用户确认）
+
+V2 阶段 2 已完成并停止。等待用户检查第 3.1～3.3 节；未经明确授权，不进入第 3.4～3.5 节或后续章节修订。
+
+## V2 阶段 3：重写和扩充第 3.4～3.5 节并改进图表（2026-10-31）
+
+### 已完成
+
+- [x] 仅重写 `latex/sections/methods_5b.tex` 的第 3.4～3.5 节，并同步修改两幅既有原创 TikZ 图和图片权利记录；未修改第 4～6 节或 `references.bib`。
+- [x] 第 3.4 节按“数字正交资源—加权求和—无线叠加—预编码/信道/接收缩放—功率约束—误差来源—适用条件—数字方案边界”展开，明确 AirComp 的收益来自无线资源复用，而非无损压缩或零代价聚合。
+- [x] 式（3.2a）～（3.2c）保持 LaTeX 原生排版；逐式解释 `h_{k,t}`、`\beta_{k,t}`、`a_t`、`q_{k,t}`、噪声和系数失配，并给出理想对齐条件。
+- [x] 第 3.5 节按“直连云端问题—边缘聚合—双时间尺度—`H` 的收益与漂移代价—分簇/负载/移动—方法组合”展开。
+- [x] 统一分层符号：`t` 仅表示云端轮次，`r` 表示云端轮次内的边缘聚合序号，`e` 表示本地 SGD 步数，`H` 仅表示每个云端轮次包含的边缘聚合次数；新增式（3.3a）的两级初始化关系。
+- [x] 图 1 增加目标权重和对齐条件 `a_t h_{k,t}\beta_{k,t}\approx q_{k,t}`；图 2 将端—边和边—云链路统一为双向，并使 `H`、`\mathcal C_{m,t}` 与正文和式（3.3）一致。
+- [x] 两幅图均继续采用项目原创黑白 TikZ 矢量源文件。图注明确写为“本文根据文献归纳绘制；原创图，未直接复用或改编第三方图片”；本阶段直接复用外部图片 0 幅。
+- [x] `latex/licenses/figure_rights.md` 已记录两幅图的事实依据、实际修改、最终图注、来源文献键和未复用候选图的权利风险。
+- [x] 原有 11 个唯一参考文献键全部保留，新增引用键为 0；未根据摘要补写实验数字，也未新增无来源结论。
+
+### 字数统计
+
+- 第 3.4 节：462 → 796 个汉字，净增 334。
+- 第 3.5 节：479 → 747 个汉字，净增 268。
+- 本阶段合计净增 602 个汉字，位于要求的 550～700 区间；按前阶段同一增量口径，全文严格正文由约 5991 增至约 6593 个汉字。
+
+### 编译、交叉引用与逐页检查
+
+- 活跃入口：`latex/main.tex`。
+- 编译命令：在 `latex/` 目录执行 `latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex`。
+- `latex/main.pdf` 已完成 XeLaTeX/Biber 稳定构建，共 8 页 A4；式（3.2a）～（3.2c）、式（3.3a）～（3.3c）、图 1、图 2 及正文引用均已解析。
+- 最终日志无未定义引用、重复标签、字体缺失、missing character、overfull 或 underfull 警告。编译中曾发现式（3.3b）约 3.8 pt 越栏，已用 `\bar{\bm u}_{k,m,t}^{(r)}` 定义最终本地模型并消除。
+- PDF 字体均已嵌入。已将第 3～6 页渲染并逐页检查：两幅跨栏图清晰、无拉伸和截图边框，图中文字与图注可读；公式未越栏，图表位置紧邻首次引用，未新增大块空白或标题孤行。
+- 仍保留既存的 LaTeX 发行版本提示和作者间距造成的 3 条 PDF 字符串替换提示，均不影响本阶段正文、图表、公式或交叉引用。
+
+### 本阶段新增或修改文件
+
+1. `latex/sections/methods_5b.tex`
+2. `latex/figures/tikz/aircomp_mechanism.tex`
+3. `latex/figures/tikz/hierarchical_aggregation.tex`
+4. `latex/licenses/figure_rights.md`
+5. `latex/main.pdf`（重新编译）
+6. `PROGRESS.md`
+
+## 继续工作所需文件（V2 阶段 3 后）
+
+1. `AGENTS.md`
+2. `PROGRESS.md`
+3. `REVISION_PLAN_V2.md`
+4. `latex/main.tex`
+5. `latex/sections/methods_5b.tex`
+6. `latex/figures/tikz/aircomp_mechanism.tex`
+7. `latex/figures/tikz/hierarchical_aggregation.tex`
+8. `latex/licenses/figure_rights.md`
+9. `latex/references.bib`
+10. `latex/main.pdf`
+
+## 下一步（待用户确认）
+
+V2 阶段 3 已完成并停止。等待用户检查第 3.4～3.5 节、图 1 和图 2；未经明确授权，不继续修改第 4～6 节、摘要或其他正文。
+
+## V2 阶段 4：增强第 4～5 节的解释性并改进图表（2026-10-31）
+
+### 已完成
+
+- [x] 仅增强 `latex/sections/discussion_conclusion.tex` 的第 4～5 节；第 6 节结论、摘要、第 1～3 节和 `references.bib` 均未改动。
+- [x] 新建原创黑白 TikZ 图 3，把全局轮数、参与集合、单次载荷、无线速率/时延/能耗、同时接入与聚合误差、消息路径与回传次数对应到五类优化方法，用于解释分类依据。
+- [x] 阶段 1 未发现内容和许可同时完全适合的外部图片，因此本阶段没有复制示例综述图片；`figure_rights.md` 已记录图 3 的事实依据、生成方式、最终图注和权利状态。
+- [x] 将原 8 列综合表拆为表 1“五类通信效率优化方法的原理比较”和表 2“不同无线边缘场景下的方法选择”；两表均采用 `booktabs`、`tabularx` 和正文可读字号，没有使用整体缩放。
+- [x] 第 4 节明确区分直接控制变量与最终系统指标，并具体分析“客户端选择＋无线资源分配”“稀疏化＋AirComp”“分层联邦＋压缩”三种组合的作用、误差叠加和控制开销。
+- [x] 第 5 节分别解释指标口径不统一、理想信道假设、终端与数据异构、跨层组合复杂四项问题；趋势仅保留有现有文献支持的在线跨层协同、异构适配、任务导向消息和可复现实验评价。
+- [x] 隐私、安全和激励仅作为影响交互、计算、能耗或参与约束的条件出现，没有扩展成并列主线。
+- [x] 43 个 BibTeX 条目均在正文中被引用，正文引用键均存在于 `references.bib`；没有新增、删除或伪造文献。
+
+### 字数统计
+
+- 第 4 节：366 → 574 个汉字，净增 208。
+- 第 5 节：332 → 463 个汉字，净增 131。
+- 本阶段合计净增 339 个汉字，位于要求的 300～450 区间；按前阶段相同的严格正文口径，全文约 6932 个汉字。
+- 统计不含题目、作者、摘要、关键词、图表文字、公式和参考文献；引用命令不计入正文汉字。
+
+### 编译、交叉引用与版面检查
+
+- 活跃入口：`latex/main.tex`。
+- 编译命令：在 `latex/` 目录执行 `latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex`。
+- `latex/main.pdf` 已完成 XeLaTeX/Biber 稳定构建，共 9 页 A4；图 3、表 1、表 2、式（2.4）及正文交叉引用均已解析。
+- 最终日志无未定义引用、未定义文献、重复标签、字体缺失、missing character、overfull 或 underfull 警告；PDF 字体均已嵌入。
+- 已渲染并逐页检查第 5～8 页：图 3 为清晰的黑白矢量图，符号与正文一致；两张跨栏表没有越界、重叠或不可辨认的小字号，浮动顺序与正文首次引用一致。
+- 第 7 页结论后的空白来自 `main.tex` 中参考文献前既有的 `\clearpage`，不是本阶段新增的图表浮动问题；本阶段未越权修改参考文献分页策略。
+- 仍保留既存的 LaTeX 发行版本提示和作者间距造成的 3 条 PDF 字符串替换提示，均不影响本阶段正文、图表或交叉引用。
+
+### 本阶段新增或修改文件
+
+1. `latex/sections/discussion_conclusion.tex`
+2. `latex/figures/tikz/communication_cost_map.tex`（新增）
+3. `latex/tables/method_comparison.tex`
+4. `latex/tables/scenario_selection.tex`（新增）
+5. `latex/licenses/figure_rights.md`
+6. `latex/main.pdf`（重新编译）
+7. `PROGRESS.md`
+
+## 继续工作所需文件（V2 阶段 4 后）
+
+1. `AGENTS.md`
+2. `PROGRESS.md`
+3. `REVISION_PLAN_V2.md`
+4. `latex/main.tex`
+5. `latex/sections/discussion_conclusion.tex`
+6. `latex/figures/tikz/communication_cost_map.tex`
+7. `latex/tables/method_comparison.tex`
+8. `latex/tables/scenario_selection.tex`
+9. `latex/licenses/figure_rights.md`
+10. `latex/references.bib`
+11. `latex/main.pdf`
+
+## 下一步（待用户确认）
+
+V2 阶段 4 已完成并停止。等待用户检查图 3、表 1、表 2及第 4～5 节；未经明确授权，不继续修改摘要、结论、参考文献分页或其他正文。
+
+## V2 阶段 5：全文语言统一、技术核查和最终交付（2026-10-31）
+
+### 已完成
+
+- [x] 逐段统一第 1—6 节语言，拆分过长句，补足术语首现解释和“问题—原因—方法—效果—代价”因果链；未改变已核实的技术含义。
+- [x] 将中英文单位改为“电子科技大学计算机科学与工程学院”及 `School of Computer Science and Engineering, University of Electronic Science and Technology of China`，邮编为 611731。
+- [x] 再次核查本地步数、异步训练、无线资源分配、FedAvg 初始化、AirComp、分层聚合符号及两张比较表；正文、公式、图和表相互一致。
+- [x] 核查最终文献 [40] 和 [43]：前者只用于区块链异步方案的上链/共识/信誉开销，后者只用于客户端上传生成模型、服务器生成模拟数据并训练全局模型的单轮方案。
+- [x] 8 组核心公式均保留为 LaTeX 原生对象，并逐组检查建模目的、变量含义、普通语言解释和通信优化用途。
+- [x] 图 1—图 3 均为项目原创 TikZ 黑白矢量图，外部图片直接复用数为 0；图注、符号和 `figure_rights.md` 一致。
+- [x] 表 1 和表 2 与正文判断一致；最终 PDF 中字号可读，无越栏、重叠或图片化表格。
+- [x] 43 条参考文献全部被正文引用，其中中文 17 条、英文 26 条；Biber 解析 43 个唯一引用键，无未定义引用或重复标签。
+
+### 字数与交付统计
+
+- 严格正文口径：4553 → 6698 个汉字，累计净增 2145，达到 1800—2200 的目标。
+- 各章净增：第 1 节 +17，第 2 节 +597，第 3 节 +1092，第 4 节 +208，第 5 节 +208，第 6 节 +23。
+- 图 3 幅，表 2 张，原生公式 8 组（14 个编号公式或子公式），参考文献 43 条。
+- 新版 PDF：`latex/output/无线边缘网络中联邦学习通信效率优化方法研究综述_v2.pdf`。
+- 修订报告：`REVISION_REPORT_V2.md`。
+- 完整可编译源文件继续保存在 `latex/`；未覆盖或删除 `latex/main.pdf`、旧版输出及 `final/` 文件。
+
+### 编译与版面终检
+
+- 活跃入口：`latex/main.tex`。
+- 在 `latex/` 目录使用带独立 `jobname` 的 `latexmk -xelatex` 完成两轮强制 XeLaTeX/Biber 构建，最终 PDF 为 9 页 A4。
+- 最终日志无未定义引用、未定义文献、重复标签、字体缺失、missing character、明显 overfull 或 underfull 警告；全部字体已嵌入。
+- 已渲染检查第 5—9 页：原第 5 页大块空白已改善；三幅图和两张表位于首次引用附近；参考文献前浮动体已清空，表 2 不再插入文献列表；末页双栏已平衡。
+- PDF 元数据作者字段改为纯文本，消除了作者间距命令造成的书签字符串警告；英文摘要未见不自然断词。
+- 仍有一项非阻塞环境提示：部分宏包请求的 LaTeX 发行日期晚于当前内核日期。它不影响输出，建议在其他设备上使用版本一致的完整 TeX Live 2026。
+
+### 本阶段新增或修改文件
+
+1. `latex/main.tex`
+2. `latex/preamble.tex`
+3. `latex/sections/introduction.tex`
+4. `latex/sections/system_model.tex`
+5. `latex/sections/methods_5a.tex`
+6. `latex/sections/methods_5b.tex`
+7. `latex/sections/discussion_conclusion.tex`
+8. `latex/output/无线边缘网络中联邦学习通信效率优化方法研究综述_v2.pdf`
+9. `REVISION_REPORT_V2.md`
+10. `PROGRESS.md`
+
+## 继续工作所需文件（V2 阶段 5 后）
+
+1. `AGENTS.md`
+2. `PROGRESS.md`
+3. `REVISION_REPORT_V2.md`
+4. `latex/main.tex`
+5. `latex/preamble.tex`
+6. `latex/sections/*.tex`
+7. `latex/tables/*.tex`
+8. `latex/figures/tikz/*.tex`
+9. `latex/references.bib`
+10. `latex/licenses/figure_rights.md`
+11. `latex/output/无线边缘网络中联邦学习通信效率优化方法研究综述_v2.pdf`
+
+## 下一步（待用户确认）
+
+V2 阶段 5 已完成并停止。等待用户审阅新版 PDF 与 `REVISION_REPORT_V2.md`；未经明确要求，不再修改正文，不提交或推送 Git。
+
+## V2.1 图注简化（2026-10-31）
+
+- [x] 删除图 1—图 3 图注中的括号式来源和版权说明，仅保留图名及文献角标。
+- [x] 图 1 保留文献 [26–28]，图 2 保留文献 [8,32–33]，图 3 保留文献 [2,4,6]；引用仍由 LaTeX 自动编号。
+- [x] 原创性、事实依据和版权判断继续完整记录在 `latex/licenses/figure_rights.md`，没有删除审计信息。
+- [x] 新版 PDF：`latex/output/无线边缘网络中联邦学习通信效率优化方法研究综述_v2.1.pdf`；原 v2 PDF 未覆盖。
+- [x] 已重新编译默认入口并同步现行别名：`latex/main.pdf`、`latex/output/manuscript_current.pdf` 和 `latex/output/无线边缘网络中联邦学习通信效率优化方法研究综述_final.pdf`；三者校验值一致，均显示简化后的图注。
+- [x] 已渲染检查第 5—6 页：三处图注均无括号说明，引用角标显示正确，图表位置和分页正常。
+- [x] 编译日志无未定义引用、重复标签、字体缺失、明显 overfull 或 underfull 警告。
+
+当前状态：V2.1 图注修订已完成，等待用户确认；不提交或推送 Git。
+
+## V2.2 首页中英文题录样式统一（2026-10-31）
+
+- [x] 首页顺序调整为：中文标题、中文作者与单位说明、中文摘要与关键词、英文标题、英文作者与单位说明、英文摘要与关键词，之后进入双栏正文。
+- [x] 中文作者姓名增加横向间距，删除单位外层括号；四位作者均使用 `1†` 角标。
+- [x] `1` 表示作者所属第 1 个单位，对应“电子科技大学”；`†` 表示共同第一作者。英文部分对应为 `University of Electronic Science and Technology of China` 和 `Joint first authors.`。
+- [x] 未复制示例论文的题目、摘要或正文，只学习其题录层级、间距和中英文对应关系。
+- [x] 已渲染检查首页：题名、作者、角标、单位、摘要和关键词均无重叠或越界；正文仍从第 1 页下部进入双栏，全文保持 9 页。
+- [x] 已生成 `latex/output/无线边缘网络中联邦学习通信效率优化方法研究综述_v2.2.pdf`，并同步更新 `latex/main.pdf`、`latex/output/manuscript_current.pdf` 和无版本号 `final.pdf`。
+- [x] 编译日志无未定义引用、重复标签、字体缺失、明显 overfull 或 underfull 警告。
+
+### 需人工确认
+
+- `†` 属于作者贡献声明。当前按用户要求将四位作者都标为共同第一作者；正式提交前应由小组确认该声明真实并取得全体作者同意。
+
+当前状态：V2.2 首页题录修订已完成，等待用户确认；不提交或推送 Git。
+
+## V2.3 共同第一作者角标修订（2026-10-31）
+
+- [x] 将四位作者中英文姓名后的共同第一作者标记从剑号 `†` 改为真正的上箭头 `↑`，最终显示为 `1↑`。
+- [x] 将中英文单位说明前的标记同步改为 `↑`，对应“共同第一作者”和 `Joint first authors.`。
+- [x] 上箭头通过 LaTeX 原生数学符号 `\uparrow` 排版，不是图片或手工绘制字符。
+- [x] 已渲染检查首页，箭头方向和位置清晰，作者行、单位行及英文题录均无重叠或越界。
+- [x] 已生成 `latex/output/无线边缘网络中联邦学习通信效率优化方法研究综述_v2.3.pdf`，并同步更新 `latex/main.pdf`、`latex/output/manuscript_current.pdf` 和无版本号 `final.pdf`。
+- [x] 编译日志无未定义引用、重复标签、字体缺失、明显 overfull 或 underfull 警告。
+
+当前状态：V2.3 角标修订已完成，等待用户确认；不提交或推送 Git。

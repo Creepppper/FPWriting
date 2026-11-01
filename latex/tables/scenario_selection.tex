@@ -1,0 +1,46 @@
+\begin{table*}[t]
+  \centering
+  \caption{不同无线边缘场景下的方法选择}
+  \label{tab:scenario-selection}
+  \begin{threeparttable}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.28}
+    \begin{tabularx}{\textwidth}{
+      @{}>{\centering\arraybackslash}p{2.05cm}
+      >{\raggedright\arraybackslash}p{2.45cm}
+      >{\centering\arraybackslash}p{2.65cm}
+      >{\raggedright\arraybackslash}X
+      >{\raggedright\arraybackslash}X@{}}
+      \toprule
+      主导瓶颈 & 典型场景 & 优先考虑的方法 & 选择理由 & 使用时需要注意的问题 \\
+      \midrule
+      同步等待与终端异构
+        & 大规模物联网；设备能力和在线状态差异明显
+        & 客户端选择＋资源分配
+        & 同时控制“谁参与”和“如何完成本轮传输”，缓解慢终端造成的等待
+        & 快设备优先会造成选择偏差；状态采集和联合求解也有开销\cite{Xu2021ClientBandwidth,Nishio2019FedCS} \\
+      高维更新与窄上行
+        & 视觉模型、移动终端或低速上行链路
+        & 量化、稀疏化及误差反馈
+        & 直接减少每轮需要编码和发送的更新量
+        & 需计入索引、码本和残差；压缩误差可能增加训练轮数\cite{Reisizadeh2020FedPAQ,Sattler2020STC} \\
+      密集终端同时接入
+        & 同步条件可控、聚合函数可加的蜂窝或传感网络
+        & AirComp；必要时结合稀疏化
+        & 在同一时频资源中完成多用户叠加，避免逐用户正交接入
+        & 依赖信道估计、同步与功率可行性，并引入聚合误差\cite{Zhu2020BroadbandAnalog,Oh2024SparseOneBitOTA} \\
+      回传链路受限
+        & 多小区、工业园区或云—边—端集群
+        & 分层联邦＋两级压缩
+        & 先减少边—云同步频率，再降低簇模型的回传载荷
+        & 需联合控制量化误差、簇间漂移和边缘负载\cite{Liu2023HierarchicalQuantization,Zhong2022HierarchicalHeterogeneous} \\
+      多瓶颈随时间变化
+        & 移动、多业务竞争或时变信道环境
+        & 跨轮选择、压缩和资源联合优化
+        & 可随训练阶段和网络状态切换主要优化变量
+        & 在线决策、反馈和模型迁移可能抵消部分通信收益\cite{Xu2021ClientBandwidth,Marnissi2024AdaptiveSQ,Azimi2024HierarchicalOTA} \\
+      \bottomrule
+    \end{tabularx}
+  \end{threeparttable}
+\end{table*}

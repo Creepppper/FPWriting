@@ -1,7 +1,9 @@
 \section{引言}\label{sec:introduction}
 
-联邦学习通过保留终端本地数据、周期性交换模型状态来完成协同训练，其通信代价来自反复执行的模型下发与更新上传。经典联邦平均（Federated Averaging，FedAvg）在相邻两次聚合之间安排多步本地计算，从而以终端计算换取较少的全局同步\cite{McMahan2017FedAvg}。然而，在无线边缘网络中，参与设备共享有限频谱，链路质量随时间和位置变化，终端的算力、能量、在线状态及本地数据量也不一致；高维模型的多轮交换因而会同时占用带宽、延长训练等待时间并消耗电池能量\cite{Lim2020MobileEdge,Niknam2020WirelessCommunications,Zhang2023EdgeFLSurvey}。通信效率不能仅用单轮压缩倍数表示，还应在相同学习目标下联合考察通信轮数、传输比特数、墙钟时延和通信能耗。
+联邦学习将原始数据保留在终端，通过周期性交换模型状态完成协同训练。其通信代价主要来自反复执行的模型下发和更新上传。经典联邦平均（Federated Averaging，FedAvg）在相邻两次聚合之间安排多步本地计算，以终端计算换取较少的全局同步\cite{McMahan2017FedAvg}。
 
-现有综述已经从不同侧面建立了研究基础。移动边缘网络综述系统讨论通信成本、资源配置和隐私约束\cite{Lim2020MobileEdge}，无线通信综述强调信道与接入资源对联邦训练的影响\cite{Niknam2020WirelessCommunications}；中文研究则分别梳理了边缘智能中的联邦学习、跨设备客户端选择及高效联邦学习方法\cite{Zhang2023EdgeFLSurvey,Zhang2024ClientSelectionSurvey,Ge2025EfficientFLSurvey}。这些工作的覆盖范围和分类尺度并不相同，直接并列算法名称难以判断某种方法究竟减少了轮数、节点、载荷、传输时间还是长距离回传。
+无线边缘网络会放大这一通信负担。参与设备共享有限频谱，链路质量随时间和位置变化；终端的算力、能量、在线状态及本地数据量也不一致。高维模型的多轮交换因而会占用带宽，延长训练等待时间，并消耗终端电量\cite{Lim2020MobileEdge,Niknam2020WirelessCommunications,Zhang2023EdgeFLSurvey}。通信成本可先理解为“轮数、参与节点数与单次载荷”的累积，再由无线速率映射为时延和能耗。因此，通信效率不能只用单轮压缩倍数衡量，还应在相同学习目标下比较累计比特、墙钟时延和通信能耗。
 
-本文据此将通信成本组成与系统作用层次结合起来组织文献。综述范围限定为直接改变通信轮数、参与集合、传输载荷、无线传输过程或网络组织方式的方法，并按客户端选择与频率控制、无线资源分配、模型压缩、空中计算和分层拓扑五类展开；隐私、安全和激励仅在其引入额外交互或资源约束时简要讨论。第~\ref{sec:system-model}节建立训练流程和评价口径，第~\ref{sec:methods}节归纳五类方法，第~\ref{sec:comparison}节比较其收益、代价与适用场景，第~\ref{sec:challenges}节讨论共同问题与发展方向，第~\ref{sec:conclusion}节给出结论。
+现有综述已经从不同侧面建立了研究基础。移动边缘网络综述讨论通信成本、资源配置和隐私约束\cite{Lim2020MobileEdge}，无线通信综述强调信道与接入资源对联邦训练的影响\cite{Niknam2020WirelessCommunications}。中文研究则分别梳理了边缘智能中的联邦学习、跨设备客户端选择及高效联邦学习方法\cite{Zhang2023EdgeFLSurvey,Zhang2024ClientSelectionSurvey,Ge2025EfficientFLSurvey}。这些工作的覆盖范围和分类尺度不同。若只并列算法名称，读者难以判断方法直接减少的是轮数、节点、载荷、传输时间还是长距离回传。
+
+本文按照方法直接改变的通信成本分量组织文献。综述范围包括通信轮数、参与集合、传输载荷、无线传输过程和网络组织方式，并归纳为客户端选择与频率控制、无线资源分配、模型压缩、空中计算和分层拓扑五类。隐私、安全和激励只在其增加交互或资源约束时讨论。第~\ref{sec:system-model}节建立训练流程和评价口径，第~\ref{sec:methods}节归纳五类方法，第~\ref{sec:comparison}节比较其收益、代价与适用场景，第~\ref{sec:challenges}节讨论共同问题与发展方向，第~\ref{sec:conclusion}节给出结论。

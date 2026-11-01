@@ -2,30 +2,49 @@
 
 \subsection{统一维度下的横向比较}\label{subsec:unified-comparison}
 
-横向比较需在相同目标精度下区分“少传多少”和“更快传完”。客户端选择改变轮数和参与规模，压缩改变载荷，资源分配与AirComp改变无线传输，分层架构改变消息路径。通信降幅需结合数据、信道和基线比较，表~\ref{tab:method-comparison}据此比较五类方法。
+横向比较需区分直接改变的变量与最终系统指标。图~\ref{fig:communication-cost-map}把式~\eqref{eq:total-bits}中的轮数、参与集合和上传载荷分别对应频率控制、客户端选择和压缩；速率与时延、并发聚合及消息路径则对应资源分配、AirComp和分层联邦学习。
+
+\begin{figure*}[t]
+  \centering
+  \resizebox{0.96\textwidth}{!}{\input{figures/tikz/communication_cost_map}}
+  \caption{通信成本分量与五类优化方法的对应关系\protect\cite{Lim2020MobileEdge,Zhang2023EdgeFLSurvey,Ge2025EfficientFLSurvey}}
+  \label{fig:communication-cost-map}
+\end{figure*}
+
+同一方法可能影响多个指标，但分类应以其直接控制的变量为准：压缩改变比特，资源分配改变速率和等待。表~\ref{tab:method-comparison}据此按“变量—原理—收益—代价”比较五类方法。
 
 \input{tables/method_comparison}
 
-表~\ref{tab:method-comparison}表明，通信收益通常是成本转移：本地计算带来漂移，少参与带来选择偏差，压缩和AirComp引入失真，资源与分层优化增加控制开销。上传比特减少不必然缩短时延，单轮加速也不保证总能耗降低\cite{Tran2019WirelessOptimization,Ge2025EfficientFLSurvey}，因而不存在脱离系统条件的最优类别。
+表~\ref{tab:method-comparison}表明，通信收益通常伴随成本转移：少参与带来偏差风险，压缩和AirComp引入失真，资源与分层优化增加控制开销。比特减少不必然缩短端到端时延，单轮加速也不保证总能耗下降\cite{Tran2019WirelessOptimization,Ge2025EfficientFLSurvey}，因而不能脱离目标精度和无线基线判断最优类别。
 
 \subsection{场景匹配与方法组合}\label{subsec:scenario-matching}
 
-方法选择应从主导瓶颈出发。设备异构或参与意愿受限时，宜先控制参与和等待，再配置无线资源\cite{Xu2021ClientBandwidth,Jia2023HierarchicalIncentive}；模型大而上行窄时优先压缩，生成模型驱动的单轮通信则依赖生成数据质量和额外计算\cite{Zheng2023SingleRound}。密集可控接入可考虑AirComp，多小区或回传受限系统更适合分层聚合、边缘关联和模型适配\cite{Fan2025EdgeAssociation,Zhong2022HierarchicalHeterogeneous}。
+方法选择应先识别主导瓶颈，再决定是否组合多个优化层。表~\ref{tab:scenario-selection}中的“优先”只表示先处理主导成本。若设备可用性还受参与意愿影响，激励应作为客户端选择的约束，而非新的通信类别\cite{Jia2023HierarchicalIncentive}。
 
-组合收益不能简单相加：稀疏AirComp同时包含压缩与信道误差，分层AirComp还叠加簇间漂移；边缘辅助也需要额外计算和控制\cite{Oh2024SparseOneBitOTA,Azimi2024HierarchicalOTA,Chen2025EdgeAssistedSparsification}。组合设计应把精度、控制比特、计算和部署条件纳入同一目标。
+\input{tables/scenario_selection}
+
+客户端选择与无线资源分配的组合同时回答“选谁”和“如何传”。前者筛除本轮难以完成训练的终端，后者为入选设备配置带宽、功率和时隙；但两层若都偏向快设备，会放大数据代表性偏差，状态上报与在线求解也会形成控制流量\cite{Xu2021ClientBandwidth,Nishio2019FedCS}。
+
+稀疏化与AirComp同时降低有效维度和多用户接入时间。终端需协调稀疏位置或采用可聚合编码，否则不同支持集无法按坐标叠加；量化误差、残差近似、信道失配和噪声还会共同进入聚合误差\cite{Oh2024SparseOneBitOTA}。
+
+分层联邦与压缩先以低频云端同步减少回传次数，再压缩簇模型以降低单次回传载荷。两级压缩误差会与簇间漂移叠加，边缘侧还要承担编解码、簇管理和负载均衡\cite{Liu2023HierarchicalQuantization,Chen2025EdgeAssistedSparsification}。因此，应分别核算端—边和边—云开销，不能直接相加不同基线下的收益。
 
 \section{现存问题与发展趋势}\label{sec:challenges}
 
 \subsection{现有研究的共同局限}\label{subsec:common-limitations}
 
-现有研究的共同不足是口径和假设不统一：轮数、压缩率、时延、能耗与聚合误差并存，若不说明目标精度及控制消息，结论难以复现\cite{Lim2020MobileEdge,Mills2020WirelessEdgeIoT,Ge2025EfficientFLSurvey}。不少方案仍基于固定拓扑、受控信道和标准数据集，对移动、故障及多业务竞争验证不足\cite{Tegin2023TimeVaryingOTA,Azimi2024HierarchicalOTA}。秘密共享、区块链共识和安全传输只作为效率约束，会增加交互、计算或能耗\cite{Chen2022SecureCompressedFL,Huang2024BlockchainAFL,Meng2025UAVEnergy}。
+指标口径不统一会限制横向比较。轮数、压缩率、时延、能耗和聚合误差衡量的对象不同；若目标精度以及控制消息、索引和重传的统计范围不同，相同“通信降低”并不表示相同系统收益\cite{Lim2020MobileEdge,Mills2020WirelessEdgeIoT,Ge2025EfficientFLSurvey}。
+
+理想信道假设和终端异构都会限制部署结论。固定拓扑、准确信道状态和同步终端便于分析，但移动、深衰落和故障会改变参与集合、AirComp对齐与分层归属\cite{Tegin2023TimeVaryingOTA,Azimi2024HierarchicalOTA}。设备能力还可能与数据分布相关，快设备优先、长期本地训练和固定分簇都可能造成统计偏差。
+
+跨层组合会叠加误差和控制开销：压缩失真、信道噪声、更新陈旧与簇间漂移可能同时出现，状态反馈和在线求解也会消耗资源。区块链异步方案还需执行模型上链、共识和信誉评估，产生额外通信与计算\cite{Huang2024BlockchainAFL}。秘密共享和安全传输同样只作为效率约束讨论，不构成独立主线\cite{Chen2022SecureCompressedFL,Meng2025UAVEnergy}。
 
 \subsection{面向可部署系统的发展方向}\label{subsec:future-directions}
 
-未来研究需要跨层在线协同，使选择、压缩、无线资源、聚合方式和边缘关联随信道与训练阶段共同调整，同时限制决策开销\cite{Xu2021ClientBandwidth,Marnissi2024AdaptiveSQ,Azimi2024HierarchicalOTA}。异构适配还应联合处理设备能力、模型规模和数据分布；异构模型适配、边缘辅助与集群蒸馏分别依赖边缘算力或代理数据，仍需跨场景验证\cite{Zhong2022HierarchicalHeterogeneous,Chen2025EdgeAssistedSparsification,Zhang2026FedCD}。
+发展方向应回应上述限制。在线跨层方法需要让客户端选择、压缩程度、无线资源和边缘关联随训练阶段与信道变化，同时计入决策时间和反馈比特\cite{Xu2021ClientBandwidth,Marnissi2024AdaptiveSQ,Azimi2024HierarchicalOTA}。面向异构终端的方法还要同时处理设备能力、模型规模和数据分布差异。边缘辅助与集群蒸馏依赖额外边缘算力或代理知识，其收益仍需跨场景验证\cite{Zhong2022HierarchicalHeterogeneous,Chen2025EdgeAssistedSparsification,Zhang2026FedCD}。
 
-面向任务的消息设计尝试用生成数据或蒸馏知识替代完整参数\cite{Zheng2023SingleRound,Zhang2026FedCD}，但证据仍依赖特定数据、模型和代理知识，尚未形成统一类别。后续实验应报告目标精度下的累计比特、时延、能耗、控制开销和聚合误差，并公开信道、数据划分与重复设置，以支持端到端复现。
+面向任务的消息设计不再要求每轮传输完整参数。单轮通信方案让客户端上传生成模型，由服务器生成模拟数据并训练全局模型\cite{Zheng2023SingleRound}；集群蒸馏则交换任务知识\cite{Zhang2026FedCD}。这类证据仍受具体任务和生成质量限制。可复现实验应在相同目标精度下报告累计比特、墙钟时延、能耗、控制开销和聚合误差，并公开信道轨迹、数据划分与重复设置。
 
 \section{结论}\label{sec:conclusion}
 
-通信效率方法可归纳为客户端选择与频率控制、无线资源分配、模型压缩、AirComp和分层拓扑五类。它们分别作用于轮数、参与节点、载荷、无线传输和消息路径，并以计算负担、统计偏差、失真、控制信令或部署复杂度为代价。窄带高维模型宜压缩，密集可控接入可考虑AirComp，多小区和回传受限系统宜分层聚合。后续需在统一精度目标下核算比特、时延、能耗和误差，并以动态环境和可复现实验检验组合方案。
+通信效率方法可归纳为客户端选择与频率控制、无线资源分配、模型压缩、AirComp和分层拓扑五类。它们分别作用于轮数与参与节点、传输载荷、无线过程和消息路径，也会引入统计偏差、失真、控制信令或部署复杂度。窄带高维模型可优先考虑压缩；密集且同步条件可控的接入场景可考虑AirComp；多小区或回传受限系统更适合分层聚合。组合方法应先确定主导瓶颈，再在同一目标精度下分别核算比特、时延、能耗和误差，不能把不同实验基线下的收益直接相加。

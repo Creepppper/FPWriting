@@ -1,0 +1,27 @@
+\begin{tikzpicture}[
+  font=\small,
+  >=Latex,
+  root/.style={draw, rounded corners=2pt, minimum width=5.2cm,
+               minimum height=0.78cm, align=center, fill=black!9,
+               font=\bfseries},
+  item/.style={draw, rounded corners=1.5pt, text width=2.25cm,
+               minimum height=1.15cm, align=center, fill=black!3,
+               inner sep=3pt},
+  flow/.style={->, line width=0.55pt}
+]
+  \node[root] (root) at (0,1.75) {联邦训练的通信成本与完成代价};
+  \coordinate (bus) at (0,0.95);
+  \draw[line width=0.55pt] (root.south) -- (bus);
+  \draw[line width=0.55pt] (-6.45,0.95) -- (6.45,0.95);
+
+  \node[item] (round) at (-6.45,0) {全局轮数 \(T\)\\[2pt]\textbf{通信频率控制}};
+  \node[item] (client) at (-3.87,0) {参与集合 \(\mathcal S_t\)\\[2pt]\textbf{客户端选择}};
+  \node[item] (payload) at (-1.29,0) {单次载荷 \(B_{k,t}^{\mathrm{ul}}\)\\[2pt]\textbf{量化与稀疏化}};
+  \node[item] (radio) at (1.29,0) {速率 \(R\)、时延、能耗\\[2pt]\textbf{无线资源分配}};
+  \node[item] (aircomp) at (3.87,0) {同时接入与聚合误差\\[2pt]\textbf{AirComp}};
+  \node[item] (hier) at (6.45,0) {消息路径与回传次数\\[2pt]\textbf{分层联邦学习}};
+
+  \foreach \n in {round,client,payload,radio,aircomp,hier}{
+    \draw[flow] (\n |- bus) -- (\n.north);
+  }
+\end{tikzpicture}

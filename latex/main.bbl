@@ -673,6 +673,119 @@
       \endverb
       \keyw{Liu2020HierarchicalFL}
     \endentry
+    \entry{Wang2019AdaptiveFL}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=a25cab276fb6274432ab3e91960695b2}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Shiqiang},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ea527294adf47dadf0748989aba99c0b}{%
+           family={Tuor},
+           familyi={T\bibinitperiod},
+           given={Tiffany},
+           giveni={T\bibinitperiod}}}%
+        {{hash=7e56857386da67d3252b7d7b5d03338e}{%
+           family={Salonidis},
+           familyi={S\bibinitperiod},
+           given={Theodoros},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5aa48ddf606faa8081c96eaf1efcfebb}{%
+           family={Leung},
+           familyi={L\bibinitperiod},
+           given={Kin\bibnamedelima K.},
+           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=62f832f65169407d8ae02206c9e9c9be}{%
+           family={Makaya},
+           familyi={M\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+        {{hash=b2f3b8cb1015140b091a1686ed1649d4}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Ting},
+           giveni={T\bibinitperiod}}}%
+        {{hash=8f64dc01dd6bf3a397d3d5b8c7ef4ce3}{%
+           family={Chan},
+           familyi={C\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+      }
+      \name{namea}{7}{}{%
+        {{hash=a25cab276fb6274432ab3e91960695b2}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Shiqiang},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ea527294adf47dadf0748989aba99c0b}{%
+           family={Tuor},
+           familyi={T\bibinitperiod},
+           given={Tiffany},
+           giveni={T\bibinitperiod}}}%
+        {{hash=7e56857386da67d3252b7d7b5d03338e}{%
+           family={Salonidis},
+           familyi={S\bibinitperiod},
+           given={Theodoros},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5aa48ddf606faa8081c96eaf1efcfebb}{%
+           family={Leung},
+           familyi={L\bibinitperiod},
+           given={Kin\bibnamedelima K.},
+           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=62f832f65169407d8ae02206c9e9c9be}{%
+           family={Makaya},
+           familyi={M\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+        {{hash=b2f3b8cb1015140b091a1686ed1649d4}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Ting},
+           giveni={T\bibinitperiod}}}%
+        {{hash=8f64dc01dd6bf3a397d3d5b8c7ef4ce3}{%
+           family={Chan},
+           familyi={C\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{078063c851b555e1da63c39bef7469c7}
+      \strng{fullhash}{bd139d0b364eb864c3090206deb59ea9}
+      \strng{fullhashraw}{bd139d0b364eb864c3090206deb59ea9}
+      \strng{bibnamehash}{2e35d1fc57320f549bb19fc63edf11cb}
+      \strng{authorbibnamehash}{2e35d1fc57320f549bb19fc63edf11cb}
+      \strng{authornamehash}{078063c851b555e1da63c39bef7469c7}
+      \strng{authorfullhash}{bd139d0b364eb864c3090206deb59ea9}
+      \strng{authorfullhashraw}{bd139d0b364eb864c3090206deb59ea9}
+      \strng{nameabibnamehash}{2e35d1fc57320f549bb19fc63edf11cb}
+      \strng{nameanamehash}{078063c851b555e1da63c39bef7469c7}
+      \strng{nameafullhash}{bd139d0b364eb864c3090206deb59ea9}
+      \strng{nameafullhashraw}{bd139d0b364eb864c3090206deb59ea9}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Journal on Selected Areas in Communications}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{number}{6}
+      \field{title}{Adaptive Federated Learning in Resource Constrained Edge Computing Systems}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{volume}{37}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{pages}{1205\bibrangedash 1221}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1109/JSAC.2019.2904348
+      \endverb
+      \keyw{Wang2019AdaptiveFL}
+    \endentry
     \entry{Dinh2021WirelessConvergence}{article}{}{}
       \name{author}{7}{}{%
         {{hash=6599d6aec576ecadc5b75445978e4798}{%
@@ -994,119 +1107,6 @@
       \endverb
       \keyw{Xu2021ClientBandwidth}
     \endentry
-    \entry{Wang2019AdaptiveFL}{article}{}{}
-      \name{author}{7}{}{%
-        {{hash=a25cab276fb6274432ab3e91960695b2}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={Shiqiang},
-           giveni={S\bibinitperiod}}}%
-        {{hash=ea527294adf47dadf0748989aba99c0b}{%
-           family={Tuor},
-           familyi={T\bibinitperiod},
-           given={Tiffany},
-           giveni={T\bibinitperiod}}}%
-        {{hash=7e56857386da67d3252b7d7b5d03338e}{%
-           family={Salonidis},
-           familyi={S\bibinitperiod},
-           given={Theodoros},
-           giveni={T\bibinitperiod}}}%
-        {{hash=5aa48ddf606faa8081c96eaf1efcfebb}{%
-           family={Leung},
-           familyi={L\bibinitperiod},
-           given={Kin\bibnamedelima K.},
-           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=62f832f65169407d8ae02206c9e9c9be}{%
-           family={Makaya},
-           familyi={M\bibinitperiod},
-           given={Christian},
-           giveni={C\bibinitperiod}}}%
-        {{hash=b2f3b8cb1015140b091a1686ed1649d4}{%
-           family={He},
-           familyi={H\bibinitperiod},
-           given={Ting},
-           giveni={T\bibinitperiod}}}%
-        {{hash=8f64dc01dd6bf3a397d3d5b8c7ef4ce3}{%
-           family={Chan},
-           familyi={C\bibinitperiod},
-           given={Kevin},
-           giveni={K\bibinitperiod}}}%
-      }
-      \name{namea}{7}{}{%
-        {{hash=a25cab276fb6274432ab3e91960695b2}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={Shiqiang},
-           giveni={S\bibinitperiod}}}%
-        {{hash=ea527294adf47dadf0748989aba99c0b}{%
-           family={Tuor},
-           familyi={T\bibinitperiod},
-           given={Tiffany},
-           giveni={T\bibinitperiod}}}%
-        {{hash=7e56857386da67d3252b7d7b5d03338e}{%
-           family={Salonidis},
-           familyi={S\bibinitperiod},
-           given={Theodoros},
-           giveni={T\bibinitperiod}}}%
-        {{hash=5aa48ddf606faa8081c96eaf1efcfebb}{%
-           family={Leung},
-           familyi={L\bibinitperiod},
-           given={Kin\bibnamedelima K.},
-           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=62f832f65169407d8ae02206c9e9c9be}{%
-           family={Makaya},
-           familyi={M\bibinitperiod},
-           given={Christian},
-           giveni={C\bibinitperiod}}}%
-        {{hash=b2f3b8cb1015140b091a1686ed1649d4}{%
-           family={He},
-           familyi={H\bibinitperiod},
-           given={Ting},
-           giveni={T\bibinitperiod}}}%
-        {{hash=8f64dc01dd6bf3a397d3d5b8c7ef4ce3}{%
-           family={Chan},
-           familyi={C\bibinitperiod},
-           given={Kevin},
-           giveni={K\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {english}%
-      }
-      \strng{namehash}{078063c851b555e1da63c39bef7469c7}
-      \strng{fullhash}{bd139d0b364eb864c3090206deb59ea9}
-      \strng{fullhashraw}{bd139d0b364eb864c3090206deb59ea9}
-      \strng{bibnamehash}{2e35d1fc57320f549bb19fc63edf11cb}
-      \strng{authorbibnamehash}{2e35d1fc57320f549bb19fc63edf11cb}
-      \strng{authornamehash}{078063c851b555e1da63c39bef7469c7}
-      \strng{authorfullhash}{bd139d0b364eb864c3090206deb59ea9}
-      \strng{authorfullhashraw}{bd139d0b364eb864c3090206deb59ea9}
-      \strng{nameabibnamehash}{2e35d1fc57320f549bb19fc63edf11cb}
-      \strng{nameanamehash}{078063c851b555e1da63c39bef7469c7}
-      \strng{nameafullhash}{bd139d0b364eb864c3090206deb59ea9}
-      \strng{nameafullhashraw}{bd139d0b364eb864c3090206deb59ea9}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{IEEE Journal on Selected Areas in Communications}
-      \field{langid}{english}
-      \field{languageid}{english}
-      \field{lansortorder}{4}
-      \field{number}{6}
-      \field{title}{Adaptive Federated Learning in Resource Constrained Edge Computing Systems}
-      \field{usera}{J}
-      \field{userd}{english}
-      \field{userf}{english}
-      \field{volume}{37}
-      \field{year}{2019}
-      \field{dateera}{ce}
-      \field{pages}{1205\bibrangedash 1221}
-      \range{pages}{17}
-      \verb{doi}
-      \verb 10.1109/JSAC.2019.2904348
-      \endverb
-      \keyw{Wang2019AdaptiveFL}
-    \endentry
     \entry{Lu2020EAFLM}{article}{}{}
       \name{author}{4}{}{%
         {{hash=4f8f0ed09620b1bb31581c8aa08a80af}{%
@@ -1417,8 +1417,8 @@
       \strng{nameafullhash}{587ae2ac6ca79e87a1e153c1984d7401}
       \strng{nameafullhashraw}{587ae2ac6ca79e87a1e153c1984d7401}
       \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Wireless Communications}
@@ -1478,8 +1478,8 @@
       \strng{nameanamehash}{912cda1dae1806c7736a0d65ad1cbb8c}
       \strng{nameafullhash}{bc34b9c237dc538d15e92ef1b50ee852}
       \strng{nameafullhashraw}{bc34b9c237dc538d15e92ef1b50ee852}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{电子与信息学报}
@@ -1500,163 +1500,6 @@
       \verb 10.11999/JEIT240741
       \endverb
       \keyw{Chen2025EdgeAssistedSparsification}
-    \endentry
-    \entry{Reisizadeh2020FedPAQ}{inproceedings}{}{}
-      \name{author}{5}{}{%
-        {{hash=4cf31be55262301fb4bab4b863d768c4}{%
-           family={Reisizadeh},
-           familyi={R\bibinitperiod},
-           given={Amirhossein},
-           giveni={A\bibinitperiod}}}%
-        {{hash=a5cf1aa4b616c0bb6335bc3307393ab9}{%
-           family={Mokhtari},
-           familyi={M\bibinitperiod},
-           given={Aryan},
-           giveni={A\bibinitperiod}}}%
-        {{hash=2ae4b63ed737cd7c460502a3d6aa594a}{%
-           family={Hassani},
-           familyi={H\bibinitperiod},
-           given={Hamed},
-           giveni={H\bibinitperiod}}}%
-        {{hash=9814576d57251b512116243e61b38a6e}{%
-           family={Jadbabaie},
-           familyi={J\bibinitperiod},
-           given={Ali},
-           giveni={A\bibinitperiod}}}%
-        {{hash=3ea45758e521315906636bf679c52991}{%
-           family={Pedarsani},
-           familyi={P\bibinitperiod},
-           given={Ramtin},
-           giveni={R\bibinitperiod}}}%
-      }
-      \name{namea}{5}{}{%
-        {{hash=4cf31be55262301fb4bab4b863d768c4}{%
-           family={Reisizadeh},
-           familyi={R\bibinitperiod},
-           given={Amirhossein},
-           giveni={A\bibinitperiod}}}%
-        {{hash=a5cf1aa4b616c0bb6335bc3307393ab9}{%
-           family={Mokhtari},
-           familyi={M\bibinitperiod},
-           given={Aryan},
-           giveni={A\bibinitperiod}}}%
-        {{hash=2ae4b63ed737cd7c460502a3d6aa594a}{%
-           family={Hassani},
-           familyi={H\bibinitperiod},
-           given={Hamed},
-           giveni={H\bibinitperiod}}}%
-        {{hash=9814576d57251b512116243e61b38a6e}{%
-           family={Jadbabaie},
-           familyi={J\bibinitperiod},
-           given={Ali},
-           giveni={A\bibinitperiod}}}%
-        {{hash=3ea45758e521315906636bf679c52991}{%
-           family={Pedarsani},
-           familyi={P\bibinitperiod},
-           given={Ramtin},
-           giveni={R\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {english}%
-      }
-      \strng{namehash}{39bc7930c9abec793efcf27a35c8b51d}
-      \strng{fullhash}{cf9fb4b331ecbd879b75ef4ed2907205}
-      \strng{fullhashraw}{cf9fb4b331ecbd879b75ef4ed2907205}
-      \strng{bibnamehash}{9d792cde806d2461e693084a752b597c}
-      \strng{authorbibnamehash}{9d792cde806d2461e693084a752b597c}
-      \strng{authornamehash}{39bc7930c9abec793efcf27a35c8b51d}
-      \strng{authorfullhash}{cf9fb4b331ecbd879b75ef4ed2907205}
-      \strng{authorfullhashraw}{cf9fb4b331ecbd879b75ef4ed2907205}
-      \strng{nameabibnamehash}{9d792cde806d2461e693084a752b597c}
-      \strng{nameanamehash}{39bc7930c9abec793efcf27a35c8b51d}
-      \strng{nameafullhash}{cf9fb4b331ecbd879b75ef4ed2907205}
-      \strng{nameafullhashraw}{cf9fb4b331ecbd879b75ef4ed2907205}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Proceedings of the 23rd International Conference on Artificial Intelligence and Statistics}
-      \field{langid}{english}
-      \field{languageid}{english}
-      \field{lansortorder}{4}
-      \field{series}{Proceedings of Machine Learning Research}
-      \field{title}{{FedPAQ}: A Communication-Efficient Federated Learning Method with Periodic Averaging and Quantization}
-      \field{usera}{C}
-      \field{userd}{english}
-      \field{userf}{english}
-      \field{volume}{108}
-      \field{year}{2020}
-      \field{dateera}{ce}
-      \field{pages}{2021\bibrangedash 2031}
-      \range{pages}{11}
-      \verb{urlraw}
-      \verb https://proceedings.mlr.press/v108/reisizadeh20a.html
-      \endverb
-      \verb{url}
-      \verb https://proceedings.mlr.press/v108/reisizadeh20a.html
-      \endverb
-      \keyw{Reisizadeh2020FedPAQ}
-    \endentry
-    \entry{Zhang2022OneBitCS}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=ec8a3dcc49dd57a2fae6c8adab0ad083}{%
-           family={章振宇},
-           familyi={章\bibinitperiod}}}%
-        {{hash=6dccd0f2ac52c9b5c2ed28c44f9e2870}{%
-           family={谭国平},
-           familyi={谭\bibinitperiod}}}%
-        {{hash=fb45bfd40d7ef1281845ca5a3b7acbb8}{%
-           family={周思源},
-           familyi={周\bibinitperiod}}}%
-      }
-      \name{namea}{3}{}{%
-        {{hash=ec8a3dcc49dd57a2fae6c8adab0ad083}{%
-           family={章振宇},
-           familyi={章\bibinitperiod}}}%
-        {{hash=6dccd0f2ac52c9b5c2ed28c44f9e2870}{%
-           family={谭国平},
-           familyi={谭\bibinitperiod}}}%
-        {{hash=fb45bfd40d7ef1281845ca5a3b7acbb8}{%
-           family={周思源},
-           familyi={周\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {chinese}%
-      }
-      \strng{namehash}{228ed9f73bc36a753a0a4e55d99ed94c}
-      \strng{fullhash}{e2320bdae285600e3167eb84d2bf4856}
-      \strng{fullhashraw}{e2320bdae285600e3167eb84d2bf4856}
-      \strng{bibnamehash}{e2320bdae285600e3167eb84d2bf4856}
-      \strng{authorbibnamehash}{e2320bdae285600e3167eb84d2bf4856}
-      \strng{authornamehash}{228ed9f73bc36a753a0a4e55d99ed94c}
-      \strng{authorfullhash}{e2320bdae285600e3167eb84d2bf4856}
-      \strng{authorfullhashraw}{e2320bdae285600e3167eb84d2bf4856}
-      \strng{nameabibnamehash}{e2320bdae285600e3167eb84d2bf4856}
-      \strng{nameanamehash}{228ed9f73bc36a753a0a4e55d99ed94c}
-      \strng{nameafullhash}{e2320bdae285600e3167eb84d2bf4856}
-      \strng{nameafullhashraw}{e2320bdae285600e3167eb84d2bf4856}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{计算机应用}
-      \field{langid}{chinese}
-      \field{languageid}{chinese}
-      \field{lansortorder}{1}
-      \field{number}{6}
-      \field{title}{基于1-bit压缩感知的高效无线联邦学习算法}
-      \field{usera}{J}
-      \field{userd}{chinese}
-      \field{userf}{chinese}
-      \field{volume}{42}
-      \field{year}{2022}
-      \field{dateera}{ce}
-      \field{pages}{1675\bibrangedash 1682}
-      \range{pages}{8}
-      \verb{doi}
-      \verb 10.11772/j.issn.1001-9081.2021061374
-      \endverb
-      \keyw{Zhang2022OneBitCS}
     \endentry
     \entry{Sattler2020STC}{article}{}{}
       \name{author}{4}{}{%
@@ -1860,6 +1703,163 @@
       \verb 10.15888/j.cnki.csa.008748
       \endverb
       \keyw{Tian2022GradientCompression}
+    \endentry
+    \entry{Reisizadeh2020FedPAQ}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=4cf31be55262301fb4bab4b863d768c4}{%
+           family={Reisizadeh},
+           familyi={R\bibinitperiod},
+           given={Amirhossein},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a5cf1aa4b616c0bb6335bc3307393ab9}{%
+           family={Mokhtari},
+           familyi={M\bibinitperiod},
+           given={Aryan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2ae4b63ed737cd7c460502a3d6aa594a}{%
+           family={Hassani},
+           familyi={H\bibinitperiod},
+           given={Hamed},
+           giveni={H\bibinitperiod}}}%
+        {{hash=9814576d57251b512116243e61b38a6e}{%
+           family={Jadbabaie},
+           familyi={J\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3ea45758e521315906636bf679c52991}{%
+           family={Pedarsani},
+           familyi={P\bibinitperiod},
+           given={Ramtin},
+           giveni={R\bibinitperiod}}}%
+      }
+      \name{namea}{5}{}{%
+        {{hash=4cf31be55262301fb4bab4b863d768c4}{%
+           family={Reisizadeh},
+           familyi={R\bibinitperiod},
+           given={Amirhossein},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a5cf1aa4b616c0bb6335bc3307393ab9}{%
+           family={Mokhtari},
+           familyi={M\bibinitperiod},
+           given={Aryan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2ae4b63ed737cd7c460502a3d6aa594a}{%
+           family={Hassani},
+           familyi={H\bibinitperiod},
+           given={Hamed},
+           giveni={H\bibinitperiod}}}%
+        {{hash=9814576d57251b512116243e61b38a6e}{%
+           family={Jadbabaie},
+           familyi={J\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3ea45758e521315906636bf679c52991}{%
+           family={Pedarsani},
+           familyi={P\bibinitperiod},
+           given={Ramtin},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{39bc7930c9abec793efcf27a35c8b51d}
+      \strng{fullhash}{cf9fb4b331ecbd879b75ef4ed2907205}
+      \strng{fullhashraw}{cf9fb4b331ecbd879b75ef4ed2907205}
+      \strng{bibnamehash}{9d792cde806d2461e693084a752b597c}
+      \strng{authorbibnamehash}{9d792cde806d2461e693084a752b597c}
+      \strng{authornamehash}{39bc7930c9abec793efcf27a35c8b51d}
+      \strng{authorfullhash}{cf9fb4b331ecbd879b75ef4ed2907205}
+      \strng{authorfullhashraw}{cf9fb4b331ecbd879b75ef4ed2907205}
+      \strng{nameabibnamehash}{9d792cde806d2461e693084a752b597c}
+      \strng{nameanamehash}{39bc7930c9abec793efcf27a35c8b51d}
+      \strng{nameafullhash}{cf9fb4b331ecbd879b75ef4ed2907205}
+      \strng{nameafullhashraw}{cf9fb4b331ecbd879b75ef4ed2907205}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 23rd International Conference on Artificial Intelligence and Statistics}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{{FedPAQ}: A Communication-Efficient Federated Learning Method with Periodic Averaging and Quantization}
+      \field{usera}{C}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{volume}{108}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{pages}{2021\bibrangedash 2031}
+      \range{pages}{11}
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v108/reisizadeh20a.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v108/reisizadeh20a.html
+      \endverb
+      \keyw{Reisizadeh2020FedPAQ}
+    \endentry
+    \entry{Zhang2022OneBitCS}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=ec8a3dcc49dd57a2fae6c8adab0ad083}{%
+           family={章振宇},
+           familyi={章\bibinitperiod}}}%
+        {{hash=6dccd0f2ac52c9b5c2ed28c44f9e2870}{%
+           family={谭国平},
+           familyi={谭\bibinitperiod}}}%
+        {{hash=fb45bfd40d7ef1281845ca5a3b7acbb8}{%
+           family={周思源},
+           familyi={周\bibinitperiod}}}%
+      }
+      \name{namea}{3}{}{%
+        {{hash=ec8a3dcc49dd57a2fae6c8adab0ad083}{%
+           family={章振宇},
+           familyi={章\bibinitperiod}}}%
+        {{hash=6dccd0f2ac52c9b5c2ed28c44f9e2870}{%
+           family={谭国平},
+           familyi={谭\bibinitperiod}}}%
+        {{hash=fb45bfd40d7ef1281845ca5a3b7acbb8}{%
+           family={周思源},
+           familyi={周\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {chinese}%
+      }
+      \strng{namehash}{228ed9f73bc36a753a0a4e55d99ed94c}
+      \strng{fullhash}{e2320bdae285600e3167eb84d2bf4856}
+      \strng{fullhashraw}{e2320bdae285600e3167eb84d2bf4856}
+      \strng{bibnamehash}{e2320bdae285600e3167eb84d2bf4856}
+      \strng{authorbibnamehash}{e2320bdae285600e3167eb84d2bf4856}
+      \strng{authornamehash}{228ed9f73bc36a753a0a4e55d99ed94c}
+      \strng{authorfullhash}{e2320bdae285600e3167eb84d2bf4856}
+      \strng{authorfullhashraw}{e2320bdae285600e3167eb84d2bf4856}
+      \strng{nameabibnamehash}{e2320bdae285600e3167eb84d2bf4856}
+      \strng{nameanamehash}{228ed9f73bc36a753a0a4e55d99ed94c}
+      \strng{nameafullhash}{e2320bdae285600e3167eb84d2bf4856}
+      \strng{nameafullhashraw}{e2320bdae285600e3167eb84d2bf4856}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{计算机应用}
+      \field{langid}{chinese}
+      \field{languageid}{chinese}
+      \field{lansortorder}{1}
+      \field{number}{6}
+      \field{title}{基于1-bit压缩感知的高效无线联邦学习算法}
+      \field{usera}{J}
+      \field{userd}{chinese}
+      \field{userf}{chinese}
+      \field{volume}{42}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{pages}{1675\bibrangedash 1682}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.11772/j.issn.1001-9081.2021061374
+      \endverb
+      \keyw{Zhang2022OneBitCS}
     \endentry
     \entry{Marnissi2024AdaptiveSQ}{article}{}{}
       \name{author}{3}{}{%
@@ -2559,8 +2559,8 @@
       \strng{nameafullhash}{da6483f303ddf45ad44874b44f1aff0e}
       \strng{nameafullhashraw}{da6483f303ddf45ad44874b44f1aff0e}
       \field{extraname}{3}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Wireless Communications}
@@ -2792,75 +2792,78 @@
       \endverb
       \keyw{Fan2025EdgeAssociation}
     \endentry
-    \entry{Meng2025UAVEnergy}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=ef438f329aa8bbd84e18dfd731eff21d}{%
-           family={孟涛},
-           familyi={孟\bibinitperiod}}}%
-        {{hash=234234c33432c6d58f231eb8e982a4cf}{%
-           family={窦艳菲},
-           familyi={窦\bibinitperiod}}}%
-        {{hash=65a551ec8c26a2b71a955e4b2efc7c67}{%
-           family={孙强},
-           familyi={孙\bibinitperiod}}}%
-        {{hash=db6d87f7f5d5bffa2e8de0f9f792e1a8}{%
-           family={陈晓敏},
-           familyi={陈\bibinitperiod}}}%
+    \entry{Jia2023HierarchicalIncentive}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=38751bd333dce530fd1be6ba73acb3f4}{%
+           family={贾云健},
+           familyi={贾\bibinitperiod}}}%
+        {{hash=4bcaa1e1e8a2160567069c1eb3ec04bd}{%
+           family={黄宇},
+           familyi={黄\bibinitperiod}}}%
+        {{hash=bd54344cba58491050bb0a3b1bc110ca}{%
+           family={梁靓},
+           familyi={梁\bibinitperiod}}}%
+        {{hash=8503767dacc68d9f63d457f5f96329d2}{%
+           family={万杨亮},
+           familyi={万\bibinitperiod}}}%
+        {{hash=4a5bad4dbd122bb9c982cd0a119c5b0a}{%
+           family={周继华},
+           familyi={周\bibinitperiod}}}%
       }
-      \name{namea}{4}{}{%
-        {{hash=ef438f329aa8bbd84e18dfd731eff21d}{%
-           family={孟涛},
-           familyi={孟\bibinitperiod}}}%
-        {{hash=234234c33432c6d58f231eb8e982a4cf}{%
-           family={窦艳菲},
-           familyi={窦\bibinitperiod}}}%
-        {{hash=65a551ec8c26a2b71a955e4b2efc7c67}{%
-           family={孙强},
-           familyi={孙\bibinitperiod}}}%
-        {{hash=db6d87f7f5d5bffa2e8de0f9f792e1a8}{%
-           family={陈晓敏},
-           familyi={陈\bibinitperiod}}}%
+      \name{namea}{5}{}{%
+        {{hash=38751bd333dce530fd1be6ba73acb3f4}{%
+           family={贾云健},
+           familyi={贾\bibinitperiod}}}%
+        {{hash=4bcaa1e1e8a2160567069c1eb3ec04bd}{%
+           family={黄宇},
+           familyi={黄\bibinitperiod}}}%
+        {{hash=bd54344cba58491050bb0a3b1bc110ca}{%
+           family={梁靓},
+           familyi={梁\bibinitperiod}}}%
+        {{hash=8503767dacc68d9f63d457f5f96329d2}{%
+           family={万杨亮},
+           familyi={万\bibinitperiod}}}%
+        {{hash=4a5bad4dbd122bb9c982cd0a119c5b0a}{%
+           family={周继华},
+           familyi={周\bibinitperiod}}}%
       }
       \list{language}{1}{%
         {chinese}%
       }
-      \strng{namehash}{16062af03cceacc4ed33c764f4b420d7}
-      \strng{fullhash}{8a9fe91312b1cb253111800bec3a4f37}
-      \strng{fullhashraw}{8a9fe91312b1cb253111800bec3a4f37}
-      \strng{bibnamehash}{c2bc739e6b953f610b90724edaccf049}
-      \strng{authorbibnamehash}{c2bc739e6b953f610b90724edaccf049}
-      \strng{authornamehash}{16062af03cceacc4ed33c764f4b420d7}
-      \strng{authorfullhash}{8a9fe91312b1cb253111800bec3a4f37}
-      \strng{authorfullhashraw}{8a9fe91312b1cb253111800bec3a4f37}
-      \strng{nameabibnamehash}{c2bc739e6b953f610b90724edaccf049}
-      \strng{nameanamehash}{16062af03cceacc4ed33c764f4b420d7}
-      \strng{nameafullhash}{8a9fe91312b1cb253111800bec3a4f37}
-      \strng{nameafullhashraw}{8a9fe91312b1cb253111800bec3a4f37}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \strng{namehash}{3a231c4349d39dc6b738452ebec3ea1a}
+      \strng{fullhash}{3b7250f20c9798e042f13c4ce36ee08f}
+      \strng{fullhashraw}{3b7250f20c9798e042f13c4ce36ee08f}
+      \strng{bibnamehash}{e977a27cc4cf0e36008478bdd7f5e8dc}
+      \strng{authorbibnamehash}{e977a27cc4cf0e36008478bdd7f5e8dc}
+      \strng{authornamehash}{3a231c4349d39dc6b738452ebec3ea1a}
+      \strng{authorfullhash}{3b7250f20c9798e042f13c4ce36ee08f}
+      \strng{authorfullhashraw}{3b7250f20c9798e042f13c4ce36ee08f}
+      \strng{nameabibnamehash}{e977a27cc4cf0e36008478bdd7f5e8dc}
+      \strng{nameanamehash}{3a231c4349d39dc6b738452ebec3ea1a}
+      \strng{nameafullhash}{3b7250f20c9798e042f13c4ce36ee08f}
+      \strng{nameafullhashraw}{3b7250f20c9798e042f13c4ce36ee08f}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{无线电工程}
+      \field{journaltitle}{电子与信息学报}
       \field{langid}{chinese}
       \field{languageid}{chinese}
       \field{lansortorder}{1}
-      \field{number}{9}
-      \field{title}{无人机辅助联邦学习安全传输能效优化}
+      \field{number}{4}
+      \field{title}{基于主从博弈的分层联邦学习激励机制研究}
       \field{usera}{J}
       \field{userd}{chinese}
       \field{userf}{chinese}
-      \field{volume}{55}
-      \field{year}{2025}
+      \field{volume}{45}
+      \field{year}{2023}
       \field{dateera}{ce}
-      \field{pages}{1861\bibrangedash 1868}
+      \field{pages}{1366\bibrangedash 1373}
       \range{pages}{8}
-      \verb{urlraw}
-      \verb https://wxdg.cbpt.cnki.net/portal/journal/portal/client/paper/4fe4319debd9959f5fd3d3337f847ae5
+      \verb{doi}
+      \verb 10.11999/JEIT220175
       \endverb
-      \verb{url}
-      \verb https://wxdg.cbpt.cnki.net/portal/journal/portal/client/paper/4fe4319debd9959f5fd3d3337f847ae5
-      \endverb
-      \keyw{Meng2025UAVEnergy}
+      \keyw{Jia2023HierarchicalIncentive}
     \endentry
     \entry{Zhong2022HierarchicalHeterogeneous}{article}{}{}
       \name{author}{5}{}{%
@@ -2912,8 +2915,8 @@
       \strng{nameanamehash}{ba51a5b4cc9ee47c2ff63a2e50b32352}
       \strng{nameafullhash}{3f0971d0ce13638e38d5ced9c30ddd3d}
       \strng{nameafullhashraw}{3f0971d0ce13638e38d5ced9c30ddd3d}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{计算机研究与发展}
@@ -2934,140 +2937,6 @@
       \verb 10.7544/issn1000-1239.20220458
       \endverb
       \keyw{Zhong2022HierarchicalHeterogeneous}
-    \endentry
-    \entry{Jia2023HierarchicalIncentive}{article}{}{}
-      \name{author}{5}{}{%
-        {{hash=38751bd333dce530fd1be6ba73acb3f4}{%
-           family={贾云健},
-           familyi={贾\bibinitperiod}}}%
-        {{hash=4bcaa1e1e8a2160567069c1eb3ec04bd}{%
-           family={黄宇},
-           familyi={黄\bibinitperiod}}}%
-        {{hash=bd54344cba58491050bb0a3b1bc110ca}{%
-           family={梁靓},
-           familyi={梁\bibinitperiod}}}%
-        {{hash=8503767dacc68d9f63d457f5f96329d2}{%
-           family={万杨亮},
-           familyi={万\bibinitperiod}}}%
-        {{hash=4a5bad4dbd122bb9c982cd0a119c5b0a}{%
-           family={周继华},
-           familyi={周\bibinitperiod}}}%
-      }
-      \name{namea}{5}{}{%
-        {{hash=38751bd333dce530fd1be6ba73acb3f4}{%
-           family={贾云健},
-           familyi={贾\bibinitperiod}}}%
-        {{hash=4bcaa1e1e8a2160567069c1eb3ec04bd}{%
-           family={黄宇},
-           familyi={黄\bibinitperiod}}}%
-        {{hash=bd54344cba58491050bb0a3b1bc110ca}{%
-           family={梁靓},
-           familyi={梁\bibinitperiod}}}%
-        {{hash=8503767dacc68d9f63d457f5f96329d2}{%
-           family={万杨亮},
-           familyi={万\bibinitperiod}}}%
-        {{hash=4a5bad4dbd122bb9c982cd0a119c5b0a}{%
-           family={周继华},
-           familyi={周\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {chinese}%
-      }
-      \strng{namehash}{3a231c4349d39dc6b738452ebec3ea1a}
-      \strng{fullhash}{3b7250f20c9798e042f13c4ce36ee08f}
-      \strng{fullhashraw}{3b7250f20c9798e042f13c4ce36ee08f}
-      \strng{bibnamehash}{e977a27cc4cf0e36008478bdd7f5e8dc}
-      \strng{authorbibnamehash}{e977a27cc4cf0e36008478bdd7f5e8dc}
-      \strng{authornamehash}{3a231c4349d39dc6b738452ebec3ea1a}
-      \strng{authorfullhash}{3b7250f20c9798e042f13c4ce36ee08f}
-      \strng{authorfullhashraw}{3b7250f20c9798e042f13c4ce36ee08f}
-      \strng{nameabibnamehash}{e977a27cc4cf0e36008478bdd7f5e8dc}
-      \strng{nameanamehash}{3a231c4349d39dc6b738452ebec3ea1a}
-      \strng{nameafullhash}{3b7250f20c9798e042f13c4ce36ee08f}
-      \strng{nameafullhashraw}{3b7250f20c9798e042f13c4ce36ee08f}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{电子与信息学报}
-      \field{langid}{chinese}
-      \field{languageid}{chinese}
-      \field{lansortorder}{1}
-      \field{number}{4}
-      \field{title}{基于主从博弈的分层联邦学习激励机制研究}
-      \field{usera}{J}
-      \field{userd}{chinese}
-      \field{userf}{chinese}
-      \field{volume}{45}
-      \field{year}{2023}
-      \field{dateera}{ce}
-      \field{pages}{1366\bibrangedash 1373}
-      \range{pages}{8}
-      \verb{doi}
-      \verb 10.11999/JEIT220175
-      \endverb
-      \keyw{Jia2023HierarchicalIncentive}
-    \endentry
-    \entry{Zheng2023SingleRound}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=fe3cc328009126e5f4e5f9b2fa02345a}{%
-           family={郑赛},
-           familyi={郑\bibinitperiod}}}%
-        {{hash=89408ba70cfd1c6366eec336d94234ae}{%
-           family={李天瑞},
-           familyi={李\bibinitperiod}}}%
-        {{hash=a57bfa6d170237234961ac14990408e5}{%
-           family={黄维},
-           familyi={黄\bibinitperiod}}}%
-      }
-      \name{namea}{3}{}{%
-        {{hash=fe3cc328009126e5f4e5f9b2fa02345a}{%
-           family={郑赛},
-           familyi={郑\bibinitperiod}}}%
-        {{hash=89408ba70cfd1c6366eec336d94234ae}{%
-           family={李天瑞},
-           familyi={李\bibinitperiod}}}%
-        {{hash=a57bfa6d170237234961ac14990408e5}{%
-           family={黄维},
-           familyi={黄\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {chinese}%
-      }
-      \strng{namehash}{e81570d5dcab9e2c12b427bd24c18418}
-      \strng{fullhash}{aa1b8a02132e5d312617ac24063bfe60}
-      \strng{fullhashraw}{aa1b8a02132e5d312617ac24063bfe60}
-      \strng{bibnamehash}{aa1b8a02132e5d312617ac24063bfe60}
-      \strng{authorbibnamehash}{aa1b8a02132e5d312617ac24063bfe60}
-      \strng{authornamehash}{e81570d5dcab9e2c12b427bd24c18418}
-      \strng{authorfullhash}{aa1b8a02132e5d312617ac24063bfe60}
-      \strng{authorfullhashraw}{aa1b8a02132e5d312617ac24063bfe60}
-      \strng{nameabibnamehash}{aa1b8a02132e5d312617ac24063bfe60}
-      \strng{nameanamehash}{e81570d5dcab9e2c12b427bd24c18418}
-      \strng{nameafullhash}{aa1b8a02132e5d312617ac24063bfe60}
-      \strng{nameafullhashraw}{aa1b8a02132e5d312617ac24063bfe60}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{计算机应用}
-      \field{langid}{chinese}
-      \field{languageid}{chinese}
-      \field{lansortorder}{1}
-      \field{number}{1}
-      \field{title}{面向通信成本优化的联邦学习算法}
-      \field{usera}{J}
-      \field{userd}{chinese}
-      \field{userf}{chinese}
-      \field{volume}{43}
-      \field{year}{2023}
-      \field{dateera}{ce}
-      \field{pages}{1\bibrangedash 7}
-      \range{pages}{7}
-      \verb{doi}
-      \verb 10.11772/j.issn.1001-9081.2021122054
-      \endverb
-      \keyw{Zheng2023SingleRound}
     \endentry
     \entry{Mills2020WirelessEdgeIoT}{article}{}{}
       \name{author}{3}{}{%
@@ -3119,8 +2988,8 @@
       \strng{nameanamehash}{bbef5cb3e0d41c4a60e2b9aa7d35b6fb}
       \strng{nameafullhash}{ddbb6efacdde1a642bf4e2ac9c59bc86}
       \strng{nameafullhashraw}{ddbb6efacdde1a642bf4e2ac9c59bc86}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Internet of Things Journal}
@@ -3186,8 +3055,8 @@
       \strng{nameanamehash}{427125f64c9fc730b0a4e3409de643d7}
       \strng{nameafullhash}{a8888a0149db92d86388b80b555e23e6}
       \strng{nameafullhashraw}{a8888a0149db92d86388b80b555e23e6}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{电子与信息学报}
@@ -3208,6 +3077,76 @@
       \verb 10.11999/JEIT221517
       \endverb
       \keyw{Huang2024BlockchainAFL}
+    \endentry
+    \entry{Meng2025UAVEnergy}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=ef438f329aa8bbd84e18dfd731eff21d}{%
+           family={孟涛},
+           familyi={孟\bibinitperiod}}}%
+        {{hash=234234c33432c6d58f231eb8e982a4cf}{%
+           family={窦艳菲},
+           familyi={窦\bibinitperiod}}}%
+        {{hash=65a551ec8c26a2b71a955e4b2efc7c67}{%
+           family={孙强},
+           familyi={孙\bibinitperiod}}}%
+        {{hash=db6d87f7f5d5bffa2e8de0f9f792e1a8}{%
+           family={陈晓敏},
+           familyi={陈\bibinitperiod}}}%
+      }
+      \name{namea}{4}{}{%
+        {{hash=ef438f329aa8bbd84e18dfd731eff21d}{%
+           family={孟涛},
+           familyi={孟\bibinitperiod}}}%
+        {{hash=234234c33432c6d58f231eb8e982a4cf}{%
+           family={窦艳菲},
+           familyi={窦\bibinitperiod}}}%
+        {{hash=65a551ec8c26a2b71a955e4b2efc7c67}{%
+           family={孙强},
+           familyi={孙\bibinitperiod}}}%
+        {{hash=db6d87f7f5d5bffa2e8de0f9f792e1a8}{%
+           family={陈晓敏},
+           familyi={陈\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {chinese}%
+      }
+      \strng{namehash}{16062af03cceacc4ed33c764f4b420d7}
+      \strng{fullhash}{8a9fe91312b1cb253111800bec3a4f37}
+      \strng{fullhashraw}{8a9fe91312b1cb253111800bec3a4f37}
+      \strng{bibnamehash}{c2bc739e6b953f610b90724edaccf049}
+      \strng{authorbibnamehash}{c2bc739e6b953f610b90724edaccf049}
+      \strng{authornamehash}{16062af03cceacc4ed33c764f4b420d7}
+      \strng{authorfullhash}{8a9fe91312b1cb253111800bec3a4f37}
+      \strng{authorfullhashraw}{8a9fe91312b1cb253111800bec3a4f37}
+      \strng{nameabibnamehash}{c2bc739e6b953f610b90724edaccf049}
+      \strng{nameanamehash}{16062af03cceacc4ed33c764f4b420d7}
+      \strng{nameafullhash}{8a9fe91312b1cb253111800bec3a4f37}
+      \strng{nameafullhashraw}{8a9fe91312b1cb253111800bec3a4f37}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{无线电工程}
+      \field{langid}{chinese}
+      \field{languageid}{chinese}
+      \field{lansortorder}{1}
+      \field{number}{9}
+      \field{title}{无人机辅助联邦学习安全传输能效优化}
+      \field{usera}{J}
+      \field{userd}{chinese}
+      \field{userf}{chinese}
+      \field{volume}{55}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{pages}{1861\bibrangedash 1868}
+      \range{pages}{8}
+      \verb{urlraw}
+      \verb https://wxdg.cbpt.cnki.net/portal/journal/portal/client/paper/4fe4319debd9959f5fd3d3337f847ae5
+      \endverb
+      \verb{url}
+      \verb https://wxdg.cbpt.cnki.net/portal/journal/portal/client/paper/4fe4319debd9959f5fd3d3337f847ae5
+      \endverb
+      \keyw{Meng2025UAVEnergy}
     \endentry
     \entry{Zhang2026FedCD}{article}{}{}
       \name{author}{4}{}{%
@@ -3269,8 +3208,8 @@
       \strng{nameanamehash}{7c6577b2d35f2f0740901109d6027327}
       \strng{nameafullhash}{adce87b6224e5c7c482de99d0aa1c1e9}
       \strng{nameafullhashraw}{adce87b6224e5c7c482de99d0aa1c1e9}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Computer Networks}
@@ -3290,6 +3229,67 @@
       \verb 10.1016/j.comnet.2026.112611
       \endverb
       \keyw{Zhang2026FedCD}
+    \endentry
+    \entry{Zheng2023SingleRound}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=fe3cc328009126e5f4e5f9b2fa02345a}{%
+           family={郑赛},
+           familyi={郑\bibinitperiod}}}%
+        {{hash=89408ba70cfd1c6366eec336d94234ae}{%
+           family={李天瑞},
+           familyi={李\bibinitperiod}}}%
+        {{hash=a57bfa6d170237234961ac14990408e5}{%
+           family={黄维},
+           familyi={黄\bibinitperiod}}}%
+      }
+      \name{namea}{3}{}{%
+        {{hash=fe3cc328009126e5f4e5f9b2fa02345a}{%
+           family={郑赛},
+           familyi={郑\bibinitperiod}}}%
+        {{hash=89408ba70cfd1c6366eec336d94234ae}{%
+           family={李天瑞},
+           familyi={李\bibinitperiod}}}%
+        {{hash=a57bfa6d170237234961ac14990408e5}{%
+           family={黄维},
+           familyi={黄\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {chinese}%
+      }
+      \strng{namehash}{e81570d5dcab9e2c12b427bd24c18418}
+      \strng{fullhash}{aa1b8a02132e5d312617ac24063bfe60}
+      \strng{fullhashraw}{aa1b8a02132e5d312617ac24063bfe60}
+      \strng{bibnamehash}{aa1b8a02132e5d312617ac24063bfe60}
+      \strng{authorbibnamehash}{aa1b8a02132e5d312617ac24063bfe60}
+      \strng{authornamehash}{e81570d5dcab9e2c12b427bd24c18418}
+      \strng{authorfullhash}{aa1b8a02132e5d312617ac24063bfe60}
+      \strng{authorfullhashraw}{aa1b8a02132e5d312617ac24063bfe60}
+      \strng{nameabibnamehash}{aa1b8a02132e5d312617ac24063bfe60}
+      \strng{nameanamehash}{e81570d5dcab9e2c12b427bd24c18418}
+      \strng{nameafullhash}{aa1b8a02132e5d312617ac24063bfe60}
+      \strng{nameafullhashraw}{aa1b8a02132e5d312617ac24063bfe60}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{计算机应用}
+      \field{langid}{chinese}
+      \field{languageid}{chinese}
+      \field{lansortorder}{1}
+      \field{number}{1}
+      \field{title}{面向通信成本优化的联邦学习算法}
+      \field{usera}{J}
+      \field{userd}{chinese}
+      \field{userf}{chinese}
+      \field{volume}{43}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{pages}{1\bibrangedash 7}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.11772/j.issn.1001-9081.2021122054
+      \endverb
+      \keyw{Zheng2023SingleRound}
     \endentry
   \enddatalist
 \endrefsection

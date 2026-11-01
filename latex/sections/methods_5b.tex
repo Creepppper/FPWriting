@@ -1,15 +1,15 @@
 \subsection{空中计算与通信聚合融合}\label{subsec:aircomp}
 
-空中计算（over-the-air computation，AirComp）改变了“先传输、后聚合”的数字通信流程。数字正交上传为各终端分配时隙或子载波，接收端分别完成信道解码，再在应用层求和；其可靠性边界清晰，但接入资源和聚合等待通常随参与设备增多。AirComp则使终端在同一资源块同步发送模拟映射后的更新，利用多址信道的波形叠加直接获得加权和，从而把传输与聚合合并\cite{Amiri2019OTA,Zhu2020BroadbandAnalog,ZhuLi2020IntegratedAirComp}。两种机制的差异如图~\ref{fig:digital-aircomp}所示。
+数字正交上传需要服务器分别恢复每个客户端的更新，因而通常为终端分配不同的时隙或子载波，避免数字码字相互干扰。服务器完成解码后再进行加权，而FedAvg等模型聚合本质上就是对客户端更新求加权和。无线多址信道又具有信号叠加特性：若终端把更新映射为模拟符号并同时发送，接收波形便包含这些符号的和。空中计算（over-the-air computation，AirComp）据此把“分别传输后求和”改为“传输过程中求和”\cite{Amiri2019OTA,Zhu2020BroadbandAnalog,ZhuLi2020IntegratedAirComp}。两种机制如图~\ref{fig:digital-aircomp}所示。
 
 \begin{figure*}[t]
   \centering
   \resizebox{0.94\textwidth}{!}{\input{figures/tikz/aircomp_mechanism}}
-  \caption{数字正交上传与空中聚合的机理差异（作者根据文献~\protect\cite{Amiri2019OTA,Zhu2020BroadbandAnalog,ZhuLi2020IntegratedAirComp}归纳绘制；原创图，未直接复用或改编第三方图片）}
+  \caption{数字正交上传与空中聚合的机理差异\protect\cite{Amiri2019OTA,Zhu2020BroadbandAnalog,ZhuLi2020IntegratedAirComp}}
   \label{fig:digital-aircomp}
 \end{figure*}
 
-AirComp的建模目的，是同时表示目标聚合值、信道失真与接收噪声。对某一模型坐标，设第 \(t\) 轮参与集合为 \(\mathcal S_t\)，终端 \(k\) 发送归一化更新 \(x_{k,t}\)，其目标权重为 \(q_{k,t}\)，则接收与估计关系可写为
+为说明信道如何影响加权和，下面采用经过相位补偿的等效实数信道模型。对第 \(t\) 轮某一模型坐标，参与集合为 \(\mathcal S_t\)，终端 \(k\) 发送归一化更新 \(x_{k,t}\)，目标聚合权重为 \(q_{k,t}\)，则
 \begin{subequations}\label{eq:aircomp}
   \begin{align}
     y_t &= \sum_{k\in\mathcal S_t}h_{k,t}\beta_{k,t}x_{k,t}+n_t,\label{eq:aircomp-receive}\\
@@ -20,33 +20,43 @@ AirComp的建模目的，是同时表示目标聚合值、信道失真与接收�
       \bigl(a_t h_{k,t}\beta_{k,t}-q_{k,t}\bigr)x_{k,t}+a_t n_t.\label{eq:aircomp-error}
   \end{align}
 \end{subequations}
-式中，\(h_{k,t}\) 为上行信道系数，\(\beta_{k,t}\) 为终端预编码系数，\(n_t\) 为接收噪声，\(a_t\) 为接收端缩放系数，\(e_t\) 为聚合误差。式~\eqref{eq:aircomp-error}表明，低时延叠加并非“零代价聚合”：信道估计误差、载波与符号不同步、受限功率下的不完全信道反演以及噪声都会造成失真。
+式~\eqref{eq:aircomp-receive}表示接收端看到所有终端信号与噪声的叠加。信道系数 \(h_{k,t}\) 描述幅度变化，终端预编码 \(\beta_{k,t}\) 用于发送前补偿，\(n_t\) 是接收噪声。式~\eqref{eq:aircomp-target}中，接收缩放 \(a_t\) 调整整体幅度，\(\widehat{s}_t\) 是实际估计，\(s_t\) 是目标加权和。式~\eqref{eq:aircomp-error}进一步说明：聚合误差由系数未对齐和缩放后的噪声组成，理想对齐要求 \(a_t h_{k,t}\beta_{k,t}\approx q_{k,t}\)。这正是后文功率控制、设备选择和接收机设计需要减小的误差。
 
-因此，AirComp的收益取决于物理层条件及学习任务对聚合误差的容忍度。宽带与时变信道研究通过功率控制、设备选择和接收缩放抑制均方误差；稀疏一比特量化和分层AirComp则把载荷压缩或网络组织与模拟聚合结合，但同时叠加量化、信道和层级误差\cite{Tegin2023TimeVaryingOTA,Oh2024SparseOneBitOTA,Azimi2024HierarchicalOTA}。该机制适合大量终端同时接入、聚合函数可加且基站能够实施精确信道协同的无线边缘场景；在深衰落、严格可靠传输或同步条件不足时，数字正交方案仍更稳健。
+数字方案需要分离多用户信号，AirComp则把受控叠加直接用作计算结果。它的收益来自无线资源复用，而不是无损压缩更新比特。
+
+对齐并非总能实现。信道反演令预编码系数与 \(h_{k,t}\) 近似成反比，但深衰落终端可能需要超过其最大发射功率。此时只能截断预编码、降低公共幅度或暂停该终端。信道估计不准会使 \(a_t h_{k,t}\beta_{k,t}\) 偏离目标权重；载波频率、相位或符号时刻不同步，也会破坏同一坐标上的叠加。接收噪声则直接进入式~\eqref{eq:aircomp-error}。这些因素形成的是聚合误差，不能简单依靠应用层重传消除。
+
+AirComp适合终端多、聚合函数可加、允许小幅模拟误差，且基站能获得较准信道信息并维持同步的场景。宽带及时变信道研究通过功率控制、设备选择和接收缩放降低聚合均方误差；稀疏一比特和分层AirComp还结合压缩或网络组织，但会叠加量化、信道与层级误差\cite{Tegin2023TimeVaryingOTA,Oh2024SparseOneBitOTA,Azimi2024HierarchicalOTA}。
+
+若深衰落频繁、同步难以保证，或任务要求可靠恢复每个客户端更新，数字上传的独立解码与差错控制更稳妥。AirComp主要减少多用户接入时间，不能理解为无条件、零误差或零能耗的聚合。
 
 \subsection{分层联邦学习与网络拓扑优化}\label{subsec:hierarchical-fl}
 
-分层联邦学习针对终端直接连接中心云所产生的长距离回传和跨域等待，将客户端按小区、地理位置或边缘关联划分为多个簇，由边缘服务器先聚合，再以较低频率向云端上传簇模型\cite{Liu2020HierarchicalFL,Abad2020HierarchicalCellular}。如图~\ref{fig:hierarchical-aggregation}所示，端—边链路承担高频局部交换，边—云链路承担低频全局同步；它优化的是消息路径和聚合位置，而不是消除通信本身。
+终端直接连接中心云时，模型更新要跨越接入网和回传网。远距离链路增加时延、流量和掉线风险，云端还要等待分散终端。分层联邦学习把客户端按小区、位置或边缘关联划分为簇，由邻近边缘服务器先聚合。多数高频更新因而停留在端—边短链路，只有簇模型以较低频率经过边—云回传\cite{Liu2020HierarchicalFL,Abad2020HierarchicalCellular}。“端—边高频、边—云低频”表示一个云端轮次内进行多次簇内聚合，随后才同步云端，如图~\ref{fig:hierarchical-aggregation}所示。
 
 \begin{figure*}[t]
   \centering
-  \resizebox{0.58\textwidth}{!}{\input{figures/tikz/hierarchical_aggregation}}
-  \caption{端—边—云双时间尺度聚合（作者根据文献~\protect\cite{Liu2020HierarchicalFL,Abad2020HierarchicalCellular,Liu2023HierarchicalQuantization}归纳绘制；原创图，未直接复用或改编第三方图片）}
+  \resizebox{0.62\textwidth}{!}{\input{figures/tikz/hierarchical_aggregation}}
+  \caption{端—边—云双时间尺度聚合\protect\cite{Liu2020HierarchicalFL,Abad2020HierarchicalCellular,Liu2023HierarchicalQuantization}}
   \label{fig:hierarchical-aggregation}
 \end{figure*}
 
-为表达两级权重和通信频率，设系统含 \(M\) 个边缘簇，第 \(m\) 个簇在第 \(t\) 个云端周期内完成 \(H\) 次边缘聚合，其客户端集合为 \(\mathcal C_{m,t}\)。客户端 \(k\) 的样本数为 \(n_k\)，第 \(r\) 次本地训练后的模型为 \(\bm w_{k,m,t}^{(r)}\)，则
+为区分三种时间尺度，令 \(t\) 表示云端轮次，\(r=1,\ldots,H\) 表示其中的边缘聚合序号，\(e=0,\ldots,E_{k,m,t}^{(r)}\) 表示本地SGD步数。这里 \(H\) 只表示每个云端轮次包含的边缘聚合次数，不表示本地步数。设系统有 \(M\) 个边缘簇，第 \(m\) 个簇的客户端集合为 \(\mathcal C_{m,t}\)，本地轨迹为 \(\bm u_{k,m,t}^{(r,e)}\)，最终本地模型记为 \(\bar{\bm u}_{k,m,t}^{(r)}=\bm u_{k,m,t}^{(r,E_{k,m,t}^{(r)})}\)。两级聚合可写为
 \begin{subequations}\label{eq:hierarchical-aggregation}
   \begin{align}
-    N_{m,t} &= \sum_{k\in\mathcal C_{m,t}}n_k,\qquad
+    \bm w_{m,t}^{(0)}&=\bm w_t,\qquad
+    \bm u_{k,m,t}^{(r,0)}=\bm w_{m,t}^{(r-1)},\label{eq:hierarchical-init}\\
+    N_{m,t}&=\sum_{k\in\mathcal C_{m,t}}n_k,\qquad
     \bm w_{m,t}^{(r)}
     =\sum_{k\in\mathcal C_{m,t}}\frac{n_k}{N_{m,t}}
-      \bm w_{k,m,t}^{(r)},\label{eq:edge-aggregation}\\
-    N_t &= \sum_{m=1}^{M}N_{m,t},\qquad
+      \bar{\bm u}_{k,m,t}^{(r)},\label{eq:edge-aggregation}\\
+    N_t&=\sum_{m=1}^{M}N_{m,t},\qquad
     \bm w_{t+1}
     =\sum_{m=1}^{M}\frac{N_{m,t}}{N_t}\bm w_{m,t}^{(H)}.\label{eq:cloud-aggregation}
   \end{align}
 \end{subequations}
-式~\eqref{eq:edge-aggregation}表示簇内边缘聚合，式~\eqref{eq:cloud-aggregation}表示每 \(H\) 次边缘聚合后的云端聚合。增大 \(H\) 可减少边—云回传次数，但也会使不同簇沿各自数据分布继续训练更久，扩大边缘模型漂移；因而远距离通信节省与全局收敛不能分开评价。
+式~\eqref{eq:hierarchical-init}表示云模型先下发到边缘，并成为客户端的初始模型。式~\eqref{eq:edge-aggregation}表示边缘服务器按样本数汇总簇内模型。式~\eqref{eq:cloud-aggregation}表示完成 \(H\) 次边缘聚合后，云端再把各簇模型合成为下一轮全局模型。三式依次对应图~\ref{fig:hierarchical-aggregation}中的云端下发、端—边训练和边—云同步。
 
-分层设计的关键代价是新增的分组、调度和层间协调。量化分层方法联合设置两级聚合间隔与消息精度，异构物联网方案还需处理边缘能力差异、异步到达和客户端选择；其收益往往由多个组件共同产生，不能归因于单一聚合层\cite{Liu2023HierarchicalQuantization,Tang2023AdaptiveGradient,Wang2023HierarchicalIoT}。因此，该类方法适合多小区蜂窝、工业物联网和云—边—端集群，但簇内非独立同分布数据会造成边缘聚合偏差，动态节点归属、边缘负载和故障还会增加控制通信。它可以与压缩、AirComp和资源分配组合\cite{Azimi2024HierarchicalOTA}，前提是分别核算端—边与边—云开销，并统一分析压缩误差、信道失真和层级漂移。
+增大 \(H\) 会在两次云端同步之间执行更多簇内聚合，因此减少边—云同步频率。各簇也会沿自身数据分布独立演化更久；簇间数据差异较大时，边缘模型可能向不同方向移动，形成簇间漂移，并需要更多云端轮次重新对齐。客户端分簇会影响数据代表性，边缘负载不均会产生新的慢节点，终端移动还会改变集合 \(\mathcal C_{m,t}\) 并增加模型迁移与控制通信。
+
+分层方法适合多小区蜂窝、工业物联网和云—边—端集群，其收益取决于回传瓶颈、簇内数据分布和边缘可用性。量化分层可同时选择聚合间隔和消息精度；异构物联网方案还要处理异步到达、边缘负载和客户端选择\cite{Liu2023HierarchicalQuantization,Tang2023AdaptiveGradient,Wang2023HierarchicalIoT}。端—边链路也可结合压缩或AirComp，并用资源分配平衡各簇\cite{Azimi2024HierarchicalOTA}。组合收益不能简单相加，需要分别核算两级比特、时延与能耗，并报告压缩误差、信道失真和层级漂移。

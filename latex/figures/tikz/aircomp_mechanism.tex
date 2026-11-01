@@ -39,5 +39,7 @@
   \draw[flow] (channel) -- node[above, font=\scriptsize] {\(y_t\)} (scale);
   \draw[flow] (scale) -- ++(0.82,0) node[right, font=\scriptsize] {\(\widehat{s}_t\)};
   \draw[flow] (4.18,1.0) -- node[right, font=\scriptsize] {噪声 \(n_t\)} (channel);
-  \node[font=\scriptsize, align=center] at (4.15,-1.34) {同频同时发送：同步、信道估计与功率对齐后在信号域求和};
+  \node[font=\scriptsize, align=center] at (4.15,-1.34)
+    {同频同时发送；同步与信道估计后对齐\\
+     \(a_t h_{k,t}\beta_{k,t}\approx q_{k,t}\)};
 \end{tikzpicture}

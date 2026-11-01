@@ -2,7 +2,9 @@
 
 \subsection{系统模型与基本训练流程}\label{subsec:training-model}
 
-中心式无线边缘联邦学习通常包含一个聚合服务器和 \(K\) 个终端，服务器可部署在接入点、边缘节点或云端，分层系统还可在边缘与云之间增加第二级聚合\cite{Tran2019WirelessOptimization,Liu2020HierarchicalFL}。第 \(k\) 个终端保存数据集 \(\mathcal D_k=\{\xi_{k,i}\}_{i=1}^{n_k}\)，其中 \(n_k\) 为样本数；训练时数据不离开终端，网络传输的是模型参数、梯度或其编码表示\cite{McMahan2017FedAvg}。为统一后续方法的学习约束，全局经验风险写为
+中心式无线边缘联邦学习由聚合服务器和 \(K\) 个终端组成。服务器可位于接入点、边缘节点或云端；分层系统还设有边缘聚合层\cite{Tran2019WirelessOptimization,Liu2020HierarchicalFL}。一次全局通信轮包含五个步骤：服务器下发当前模型，选择参与客户端；客户端使用本地数据训练若干步并上传更新；服务器聚合这些更新，得到下一轮模型。原始数据留在终端，网络传输的是模型参数、梯度或编码结果\cite{McMahan2017FedAvg}。
+
+为说明各客户端的训练目标如何合成为全局目标，设终端 \(k\) 保存数据集 \(\mathcal D_k=\{\xi_{k,i}\}_{i=1}^{n_k}\)，其中 \(n_k\) 为样本数。全局经验风险写为各客户端局部损失的加权平均：
 \begin{equation}\label{eq:global-objective}
   \begin{aligned}
     \min_{\bm w}\quad F(\bm w)
@@ -14,11 +16,12 @@
     \qquad N=\sum_{j=1}^{K}n_j .
   \end{aligned}
 \end{equation}
-式中，\(\bm w\) 为全局模型参数，\(F_k\) 为终端 \(k\) 的局部经验风险，\(\ell\) 为单样本损失，\(q_k\) 为按样本数确定的聚合权重，\(N\) 为总样本数。式~\eqref{eq:global-objective}表明，通信削减必须以维持学习目标为约束，不能把少传数据本身等同于训练有效。
+式中，\(\bm w\) 为模型参数，\(\ell\) 为单样本损失，\(F_k\) 为局部经验风险，\(q_k\) 为样本数权重，\(N\) 为总样本数。用普通语言说，样本较多的客户端对全局目标贡献更大。式~\eqref{eq:global-objective}也给出了通信优化的前提：减少通信后仍要达到约定的损失或精度目标。
 
-一轮训练由模型下发、本地更新、更新上传和服务器聚合组成。设 \(t\) 为全局通信轮，\(\mathcal S_t\) 为参与集合，\(e\) 为本地步，\(\mathcal B_{k,t}^{(e)}\subseteq\mathcal D_k\) 为终端 \(k\) 的小批量样本，终端以学习率 \(\eta_t\) 执行随机梯度下降
+设 \(t\) 为全局轮次，\(\mathcal S_t\) 为参与集合，\(e\) 为本地更新步。客户端收到全局模型后，首先令本地初始模型 \(\bm w_{k,t}^{(0)}=\bm w_t\)。随后采用小批量随机梯度下降（stochastic gradient descent，SGD）：每一步只抽取一小批样本估计梯度，再沿降低损失的方向更新参数，
 \begin{equation}\label{eq:local-update}
   \begin{aligned}
+    \bm w_{k,t}^{(0)}&=\bm w_t,\\
     \bm g_{k,t}^{(e)}
       &=\frac{1}{\lvert\mathcal B_{k,t}^{(e)}\rvert}
         \sum_{\xi\in\mathcal B_{k,t}^{(e)}}
@@ -27,18 +30,22 @@
       &=\bm w_{k,t}^{(e)}-\eta_t\bm g_{k,t}^{(e)}.
   \end{aligned}
 \end{equation}
-完成 \(E_k\) 步后，FedAvg 按参与终端的数据量聚合为\cite{McMahan2017FedAvg}
+其中，\(\mathcal B_{k,t}^{(e)}\) 是第 \(e\) 步的小批量样本，\(\bm g_{k,t}^{(e)}\) 是估计梯度，\(\eta_t\) 是学习率。式~\eqref{eq:local-update}可以读作：客户端从服务器下发的同一模型出发，用本地小批量梯度逐步更新参数。它说明本地计算发生在两次通信之间，为后文讨论通信频率提供了基础。
+
+客户端完成 \(E_k\) 步本地更新后，联邦平均（Federated Averaging，FedAvg）按参与客户端的数据量计算加权平均\cite{McMahan2017FedAvg}：
 \begin{equation}\label{eq:fedavg}
   \bm w_{t+1}
   =\sum_{k\in\mathcal S_t}
    \frac{n_k}{\sum_{j\in\mathcal S_t}n_j}
    \bm w_{k,t}^{(E_k)} .
 \end{equation}
-式~\eqref{eq:local-update}和式~\eqref{eq:fedavg}把本地步数、参与规模与聚合权重联系起来：增加 \(E_k\) 或缩小 \(\mathcal S_t\) 可减少当期交互，却可能改变更新时效性和数据代表性，后续比较需同时记录其学习代价。
+式~\eqref{eq:fedavg}可以读作：服务器按参与客户端的样本数加权，得到下一轮全局模型。增加 \(E_k\) 不会取消当前轮的下发或上传，只会增加两次聚合之间的本地计算。若算法仍能收敛，它可能减少达到目标精度所需的全局轮数。非独立同分布（non-IID）指不同客户端的数据分布不相同。此时本地训练过多会使模型沿不同方向移动，形成“本地漂移”，并抵消减少同步的收益\cite{McMahan2017FedAvg,Wang2019AdaptiveFL}。
 
 \subsection{通信成本分解与评价指标}\label{subsec:communication-metrics}
 
-累计通信量需要把轮数、参与规模、上下行载荷及控制信令置于同一口径。设 \(T\) 为达到预定精度或损失阈值所需的全局轮数，\(B_t^{\mathrm{dl}}\) 为第 \(t\) 轮下行广播量，\(B_{k,t}^{\mathrm{ul}}\) 和 \(B_{k,t}^{\mathrm{ctl}}\) 分别为终端 \(k\) 的上行载荷与调度、索引或信道反馈等控制比特，则本文采用
+通信效率需要多项指标描述。通信轮数是达到指定精度所需的全局同步次数；参与节点数是每轮上传的客户端数量；单轮比特量包括下发、上传和控制信令。墙钟时延是训练开始至达到目标精度的实际时间，包含计算、传输和同步等待；通信能耗则是无线收发消耗的能量。“发送得少”“发送得快”和“发送得省电”分别对应比特量、时延和能耗，不能相互替代。
+
+为统一核算累计通信量，设 \(T\) 为达到预定精度或损失阈值所需的全局轮数，\(B_t^{\mathrm{dl}}\) 为第 \(t\) 轮下行广播量，\(B_{k,t}^{\mathrm{ul}}\) 为客户端 \(k\) 的上行载荷，\(B_{k,t}^{\mathrm{ctl}}\) 为调度、索引和信道反馈等控制比特，则
 \begin{equation}\label{eq:total-bits}
   \begin{split}
     B_{\mathrm{tot}}=\sum_{t=0}^{T-1}\biggl[
@@ -47,9 +54,11 @@
     \biggr].
   \end{split}
 \end{equation}
-式~\eqref{eq:total-bits}是统一比较口径而非某种算法的性能结论；其中下行默认按基站一次广播的空口发送量统计，若按全部终端的接收总量核算，则必须相应计入接收节点数。该式说明，减少单轮载荷只有在没有显著增加 \(T\) 或控制开销时，才会降低累计通信量\cite{Ge2025EfficientFLSurvey}。
+式~\eqref{eq:total-bits}可以读作：逐轮累加一次下行广播，以及所有参与客户端的上传和控制信息。\textbf{说明性示例：}若训练进行 2 轮，每轮下行广播 120 bit，3 个客户端各上传 100 bit 更新和 10 bit 控制信息，则累计通信量为 \(2\times[120+3\times(100+10)]=900\) bit。该计算只用于解释公式，不是实验结果。它说明单轮载荷变小不保证 \(B_{\mathrm{tot}}\) 下降；所需轮数或控制信息增加时，累计通信量仍可能上升\cite{Ge2025EfficientFLSurvey}。
 
-无线链路进一步把比特量映射为时延和能耗。对准静态上行时隙，令 \(b_{k,t}\)（\si{\hertz}）、\(P_{k,t}\)（\si{\watt}）、\(h_{k,t}\) 分别表示分配带宽、发射功率和等效信道功率增益，\(N_0\)（\si{\watt\per\hertz}）为噪声功率谱密度，\(I_{k,t}\)（\si{\watt}）为带内干扰功率，则常用抽象关系为\cite{Tran2019WirelessOptimization,Dinh2021WirelessConvergence}
+五类方法作用于式~\eqref{eq:total-bits}的不同部分。客户端选择与频率控制改变 \(\mathcal S_t\) 和 \(T\)；模型压缩改变载荷，也可能增加索引等控制比特；无线资源分配通常不改变载荷，而是改变传输时间和能量。空中计算让多用户传输与聚合同时进行，更适合用信道占用时间和聚合误差衡量\cite{Zhang2023EdgeFLSurvey}。分层联邦学习改变消息路径，需要分别统计端—边和边—云通信。
+
+无线链路把比特量进一步映射为时延和能耗。在一个信道状态近似不变的上行时隙内，令 \(b_{k,t}\)（\si{\hertz}）为分配带宽，\(P_{k,t}\)（\si{\watt}）为发射功率，\(h_{k,t}\) 为信道功率增益，\(N_0\)（\si{\watt\per\hertz}）为噪声功率谱密度，\(I_{k,t}\)（\si{\watt}）为干扰功率，则常用关系为\cite{Tran2019WirelessOptimization,Dinh2021WirelessConvergence}
 \begin{subequations}\label{eq:wireless-link}
   \begin{align}
     R_{k,t}&=b_{k,t}\log_2\!\left(
@@ -61,4 +70,4 @@
       &=P_{k,t}\tau_{k,t}^{\mathrm{ul}}.\label{eq:uplink-energy}
   \end{align}
 \end{subequations}
-式~\eqref{eq:wireless-link}中，\(R_{k,t}\)（\si{\bit\per\second}）、\(\tau_{k,t}^{\mathrm{ul}}\)（\si{\second}）和 \(E_{k,t}^{\mathrm{ul}}\)（\si{\joule}）分别为上行速率、传输时延和发送能耗。由此可见，压缩主要改变 \(B_{k,t}^{\mathrm{ul}}\)，资源分配主要改变 \(R_{k,t}\)，客户端与频率控制改变 \(T\) 和 \(\mathcal S_t\)，分层架构则改变消息路径；这些量必须在相同精度目标和明确无线假设下比较，才能判断端到端通信效率是否真正提高\cite{Dinh2021WirelessConvergence,Zhang2023EdgeFLSurvey}。
+式~\eqref{eq:wireless-link}中，\(R_{k,t}\) 是上行速率，\(\tau_{k,t}^{\mathrm{ul}}\) 是传输时延，\(E_{k,t}^{\mathrm{ul}}\) 是发送能耗。三式可以依次读作：带宽、功率和信道条件决定速率；载荷除以速率得到发送时间；功率乘发送时间得到能耗。提高功率可能加快速率，却也提高单位时间功耗，所以总能耗未必下降。下行广播的比特量通常按基站一次发送统计，而广播时延可能由最慢接收客户端决定。前者统计发送多少，后者描述等待多久。后文讨论资源分配时将沿用这一区分\cite{Dinh2021WirelessConvergence,Zhang2023EdgeFLSurvey}。
